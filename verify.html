@@ -1,139 +1,348 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Doge Initiative — Email Verification</title>
-<style>
-  body {
-    font-family: 'Inter', sans-serif;
-    background: linear-gradient(135deg, #1e293b, #0f172a);
-    color: #e0e7ff;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-  header {
-    background: #0f172a;
-    padding: 1rem 2rem;
-    box-shadow: 0 2px 8px rgb(0 0 0 / 0.7);
-    text-align: center;
-    font-weight: 900;
-    color: #facc15;
-    font-size: 1.5rem;
-  }
-  main {
-    flex-grow: 1;
-    max-width: 480px;
-    margin: 3rem auto;
-    background: #0f172a;
-    border-radius: 12px;
-    box-shadow: 0 0 15px #facc15;
-    padding: 2rem;
-  }
-  h1 {
-    text-align: center;
-    margin-bottom: 1.5rem;
-    font-weight: 900;
-    font-size: 2rem;
-    color: #facc15;
-  }
-  p.instructions {
-    text-align: center;
-    margin-bottom: 2rem;
-    color: #cbd5e1;
-  }
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  input[type="email"] {
-    padding: 0.75rem 1rem;
-    border-radius: 8px;
-    border: none;
-    font-size: 1rem;
-    font-weight: 600;
-    outline: none;
-  }
-  button {
-    background: #facc15;
-    border: none;
-    padding: 0.75rem;
-    border-radius: 8px;
-    font-weight: 700;
-    font-size: 1.15rem;
-    cursor: pointer;
-    color: #0f172a;
-    box-shadow: 0 0 12px #facc15;
-    transition: background 0.3s ease;
-  }
-  button:hover {
-    background: #eab308;
-  }
-  .footer-note {
-    margin-top: 2rem;
-    font-size: 0.85rem;
-    color: #64748b;
-    text-align: center;
-  }
-  .error-msg {
-    color: #f87171;
-    font-weight: 700;
-    text-align: center;
-  }
-  /* Responsive */
-  @media (max-width: 600px) {
-    main {
-      margin: 2rem 1rem;
-      padding: 1.5rem;
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Doge Initiative — Verify & Invest</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #000;
+      color: #f0f0f0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      position: relative;
     }
-  }
-</style>
+    body::before {
+      content: "";
+      position: fixed; top: -100%; left: -100%;
+      width: 300%; height: 300%;
+      background: transparent;
+      animation: stars 60s linear infinite;
+      z-index: -2;
+    }
+    @keyframes stars {
+      from { transform: rotate(0); }
+      to { transform: rotate(360deg); }
+    }
+
+    nav {
+      position: sticky; top: 0;
+      background: rgba(17,17,17,0.85);
+      padding: 1rem 2rem;
+      display: flex; justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(5px);
+      z-index: 100;
+    }
+    .logo {
+      font-size: 1.8rem; font-weight: bold;
+      color: #f7b500; display: flex; align-items: center; gap: 0.5rem;
+    }
+    .logo span { font-size: 2rem }
+    nav ul {
+      display: flex; gap: 2rem; list-style: none;
+    }
+    nav a {
+      font-weight: 600;
+      color: inherit;
+      text-decoration: none;
+    }
+    nav a:hover { color: #ffd700 }
+
+    main {
+      flex: 1;
+      max-width: 960px;
+      margin: auto;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 3rem;
+      color: #f7b500;
+      margin-bottom: 0.5rem;
+    }
+    .subtitle {
+      color: #bbb;
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .audit-box {
+      background: rgba(17,17,17,0.85);
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 0 20px #ffd70044;
+      margin-bottom: 2rem;
+      text-align: left;
+      color: #eee;
+    }
+    .audit-box h2 {
+      color: #ffd700;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+    .audit-box p {
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+    }
+    .audit-box code {
+      background: #222;
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      font-family: monospace;
+      user-select: all;
+    }
+    .audit-box a.download {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.7rem 1.5rem;
+      background-color: #f7b500;
+      color: #000;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: background-color 0.2s;
+    }
+    .audit-box a.download:hover {
+      background-color: #ffd700cc;
+    }
+
+    .tiers {
+      margin-top: 2rem;
+      margin-bottom: 3rem;
+    }
+    .tiers h3 {
+      color: #ffd700;
+      margin-bottom: 1rem;
+      text-align: center;
+      font-weight: 700;
+      font-size: 1.8rem;
+    }
+    .tier-list {
+      list-style: none;
+      background: rgba(17,17,17,0.85);
+      border-radius: 12px;
+      padding: 1rem 2rem;
+      max-width: 600px;
+      margin: auto;
+      box-shadow: 0 0 15px #ffd70033;
+      color: #ddd;
+    }
+    .tier-list li {
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+      cursor: default;
+    }
+    .tier-list li strong {
+      color: #f7b500;
+    }
+
+    .wallets {
+      max-width: 600px;
+      margin: 2rem auto;
+      background: rgba(17,17,17,0.85);
+      border-radius: 12px;
+      padding: 1rem 1.5rem;
+      box-shadow: 0 0 15px #ffd70033;
+      text-align: left;
+      font-size: 0.95rem;
+      user-select: text;
+      color: #ccc;
+    }
+    .wallets summary {
+      font-weight: 600;
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: 0.5rem 0;
+      outline: none;
+      color: #ffd700;
+    }
+    .wallets code {
+      display: block;
+      background: #222;
+      padding: 0.3rem 0.6rem;
+      margin-top: 0.3rem;
+      border-radius: 4px;
+      word-break: break-all;
+      user-select: all;
+      color: #eee;
+    }
+
+    .investment-form {
+      max-width: 600px;
+      margin: 2rem auto 3rem;
+      background: rgba(17,17,17,0.85);
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 0 20px #ffd70044;
+      text-align: left;
+      color: #eee;
+    }
+
+    .investment-form label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #f7b500;
+    }
+    .investment-form select,
+    .investment-form input[type="email"],
+    .investment-form input[type="text"] {
+      width: 100%;
+      padding: 0.7rem;
+      margin-bottom: 1.2rem;
+      border-radius: 8px;
+      border: none;
+      font-size: 1rem;
+    }
+    .investment-form button {
+      background: #f7b500;
+      color: #000;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      font-weight: bold;
+      font-size: 1.15rem;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      width: 100%;
+    }
+    .investment-form button:hover {
+      background-color: #ffd700cc;
+    }
+
+    .success-message {
+      background: #4ade80;
+      color: #000;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+      font-weight: bold;
+      display: none;
+      text-align: center;
+    }
+
+    footer {
+      padding: 2rem 0;
+      font-size: 0.9rem;
+      color: #999;
+      text-align: center;
+      border-top: 1px solid #222;
+      margin-top: auto;
+    }
+    footer a { color: #ffd700 }
+
+    /* Floating sticky CTA on mobile */
+    .floating-cta {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #f7b500;
+      color: #000;
+      padding: 1rem 1.5rem;
+      border-radius: 50px;
+      font-weight: bold;
+      box-shadow: 0 0 15px #f7b500aa;
+      z-index: 999;
+      display: none;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    @media(max-width: 768px) {
+      .floating-cta { display: block; }
+    }
+  </style>
 </head>
 <body>
-<header>Doge Initiative</header>
-<main>
-  <h1>Email Verification</h1>
-  <p class="instructions">Enter your email address to verify and proceed with your investment.</p>
-  <form id="verifyForm" novalidate>
-    <input type="email" id="email" name="email" placeholder="Your email address" required />
-    <button type="submit">Verify Email</button>
-  </form>
-  <p id="errorMsg" class="error-msg" role="alert" aria-live="assertive" style="display:none;"></p>
-  <p class="footer-note">We respect your privacy. No spam, ever.</p>
-</main>
+  <nav>
+    <div class="logo"><span>🚀</span>Doge Initiative</div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="verify.html">Verify</a></li>
+    </ul>
+  </nav>
 
-<script>
-  const form = document.getElementById('verifyForm');
-  const errorMsg = document.getElementById('errorMsg');
+  <main>
+    <h1>Verify & Invest</h1>
+    <p class="subtitle">Your gateway to up to $7,200 ROI in 14 days, verified by CertiTrust audit.</p>
 
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    errorMsg.style.display = 'none';
+    <section class="audit-box" aria-label="CertiTrust audit verification">
+      <h2>CertiTrust Audit Verification</h2>
+      <p>Report ID: <code>CRTS-AUD-569HX-ZF41</code></p>
+      <p>Contract integrity verified per CertiTrust Tier-1 protocol, audit dated June 2025.</p>
+      <p>Audited Entity: <strong>Doge Initiative</strong></p>
+      <p>Smart Contract Address: <code>0x7c4f9873ab23dd00af49e9da89b44caed3c9f7a9</code></p>
+      <a class="download" href="Doge_Initiative_CertiTrust_Audit.pdf" download>Download Official PDF</a>
+    </section>
 
-    const emailInput = form.email.value.trim();
-    if (!validateEmail(emailInput)) {
-      errorMsg.textContent = 'Please enter a valid email address.';
-      errorMsg.style.display = 'block';
-      return;
-    }
+    <section class="tiers" aria-label="Investment tiers">
+      <h3>Verified Investment Tiers</h3>
+      <ul class="tier-list">
+        <li><strong>Basic Tier:</strong> $500 → $1,125 payout (14 days)</li>
+        <li><strong>Gold Tier:</strong> $1,000 → $2,700 payout (Priority queue)</li>
+        <li><strong>Platinum Tier:</strong> $2,500+ → $7,200 payout (AI Smart Multiplier)</li>
+      </ul>
+    </section>
 
-    // Simulate a verification delay
-    form.querySelector('button').disabled = true;
-    form.querySelector('button').textContent = 'Verifying...';
+    <details class="wallets" aria-label="Deposit Wallet Addresses">
+      <summary>Show Deposit Wallet Addresses</summary>
+      <code>DOGE: D91ME9KqahFu7LLySpr3nPGYY1iheCu8WX</code>
+      <code>BTC: bc1qxvjz6kv84awx29p75qhn7qgxtwq4xt3phc7q26</code>
+      <code>SOL: 3F2D7izX8gYkSwXwSyWoKB1dob53MDMCxqBVpPUEc8sz</code>
+      <code>USDT (ERC20): 0x1a670b57855dE6cED8Cf659Eea8BDDcB0F4C5FE4</code>
+    </details>
 
-    setTimeout(() => {
-      // On success, redirect to success.html with email as query param
-      window.location.href = `success.html?email=${encodeURIComponent(emailInput)}`;
-    }, 1500);
-  });
+    <form class="investment-form" aria-label="Investment form" id="investForm">
+      <label for="tier">Choose Investment Tier</label>
+      <select id="tier" name="tier" required>
+        <option value="" disabled selected>Select a tier</option>
+        <option value="basic">Basic - $500</option>
+        <option value="gold">Gold - $1,000</option>
+        <option value="platinum">Platinum - $2,500+</option>
+      </select>
 
-  function validateEmail(email) {
-    // Basic RFC 5322 email regex
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(email.toLowerCase());
-  }
-</script>
+      <label for="email">Your Email</label>
+      <input type="email" id="email" name="email" placeholder="email@example.com" required/>
+
+      <label for="wallet">Your Wallet Address (for payout)</label>
+      <input type="text" id="wallet" name="wallet" placeholder="Your crypto wallet address" required/>
+
+      <button type="submit">Invest Now</button>
+      <div class="success-message" id="successMessage">Thank you! Your investment request has been received.</div>
+    </form>
+  </main>
+
+  <a class="floating-cta" href="#investForm">💸 Invest Now</a>
+
+  <footer>
+    Contact us: <a href="mailto:contact@doge-initiative.org">contact@doge-initiative.org</a><br/>
+    Emergency: <a href="mailto:Elon@doge-initiative.org">Elon@doge-initiative.org</a>
+  </footer>
+
+  <script>
+    // Starfield animation is handled via CSS.
+
+    // Simple form submission handler (fake)
+    const form = document.getElementById('investForm');
+    const successMessage = document.getElementById('successMessage');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      // Here you'd typically send data to backend or email handler
+
+      // Show success message and reset form
+      successMessage.style.display = 'block';
+      form.reset();
+
+      // Optionally scroll to success message
+      successMessage.scrollIntoView({behavior: 'smooth'});
+    });
+  </script>
 </body>
 </html>
