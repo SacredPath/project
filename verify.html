@@ -143,6 +143,7 @@
       color: #f7b500;
     }
 
+    /* Wallets */
     .wallets {
       max-width: 600px;
       margin: 2rem auto;
@@ -155,23 +156,51 @@
       user-select: text;
       color: #ccc;
     }
-    .wallets summary {
-      font-weight: 600;
-      font-size: 1.2rem;
-      cursor: pointer;
-      padding: 0.5rem 0;
-      outline: none;
+    .wallets h3 {
+      margin-bottom: 1rem;
       color: #ffd700;
+      font-weight: 700;
     }
-    .wallets code {
+    .wallet-btn {
+      display: block;
+      width: 100%;
+      background: #222;
+      border: none;
+      color: #f7b500;
+      font-weight: 600;
+      padding: 0.8rem 1rem;
+      margin-bottom: 0.3rem;
+      border-radius: 8px;
+      cursor: pointer;
+      text-align: left;
+      transition: background-color 0.2s;
+      user-select: none;
+    }
+    .wallet-btn:hover {
+      background-color: #333;
+    }
+    .wallet-address {
+      background: #111;
+      padding: 0.7rem 1rem;
+      margin-bottom: 1.5rem;
+      border-radius: 8px;
+      color: #eee;
+    }
+    .wallet-address code {
       display: block;
       background: #222;
       padding: 0.3rem 0.6rem;
-      margin-top: 0.3rem;
+      margin-bottom: 0.5rem;
       border-radius: 4px;
       word-break: break-all;
       user-select: all;
-      color: #eee;
+      color: #ffd700;
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+    .wallet-address p {
+      font-size: 0.9rem;
+      color: #aaa;
     }
 
     .investment-form {
@@ -235,6 +264,7 @@
       text-align: center;
       border-top: 1px solid #222;
       margin-top: auto;
+      font-style: italic;
     }
     footer a { color: #ffd700 }
 
@@ -290,13 +320,37 @@
       </ul>
     </section>
 
-    <details class="wallets" aria-label="Deposit Wallet Addresses">
-      <summary>Show Deposit Wallet Addresses</summary>
-      <code>DOGE: D91ME9KqahFu7LLySpr3nPGYY1iheCu8WX</code>
-      <code>BTC: bc1qxvjz6kv84awx29p75qhn7qgxtwq4xt3phc7q26</code>
-      <code>SOL: 3F2D7izX8gYkSwXwSyWoKB1dob53MDMCxqBVpPUEc8sz</code>
-      <code>USDT (ERC20): 0x1a670b57855dE6cED8Cf659Eea8BDDcB0F4C5FE4</code>
-    </details>
+    <section class="wallets" aria-label="Deposit Wallet Addresses">
+      <h3>Deposit Wallets</h3>
+      <div>
+        <button class="wallet-btn" data-wallet="DOGE" aria-expanded="false" aria-controls="DOGE">DOGE Wallet</button>
+        <div class="wallet-address" id="DOGE" style="display:none;" role="region" aria-live="polite">
+          <code>D91ME9KqahFu7LLySpr3nPGYY1iheCu8WX</code>
+          <p>Verification Time Left: <span class="timer" id="timer-DOGE">10:00</span></p>
+        </div>
+      </div>
+      <div>
+        <button class="wallet-btn" data-wallet="BTC" aria-expanded="false" aria-controls="BTC">BTC Wallet</button>
+        <div class="wallet-address" id="BTC" style="display:none;" role="region" aria-live="polite">
+          <code>bc1qxvjz6kv84awx29p75qhn7qgxtwq4xt3phc7q26</code>
+          <p>Verification Time Left: <span class="timer" id="timer-BTC">10:00</span></p>
+        </div>
+      </div>
+      <div>
+        <button class="wallet-btn" data-wallet="SOL" aria-expanded="false" aria-controls="SOL">SOL Wallet</button>
+        <div class="wallet-address" id="SOL" style="display:none;" role="region" aria-live="polite">
+          <code>3F2D7izX8gYkSwXwSyWoKB1dob53MDMCxqBVpPUEc8sz</code>
+          <p>Verification Time Left: <span class="timer" id="timer-SOL">10:00</span></p>
+        </div>
+      </div>
+      <div>
+        <button class="wallet-btn" data-wallet="USDT" aria-expanded="false" aria-controls="USDT">USDT (ERC20) Wallet</button>
+        <div class="wallet-address" id="USDT" style="display:none;" role="region" aria-live="polite">
+          <code>0x1a670b57855dE6cED8Cf659Eea8BDDcB0F4C5FE4</code>
+          <p>Verification Time Left: <span class="timer" id="timer-USDT">10:00</span></p>
+        </div>
+      </div>
+    </section>
 
     <form class="investment-form" aria-label="Investment form" id="investForm">
       <label for="tier">Choose Investment Tier</label>
@@ -321,6 +375,7 @@
   <a class="floating-cta" href="#investForm">💸 Invest Now</a>
 
   <footer>
+    <p>© 2025 Doge Initiative. Designed by Elon & Doge engineers. All rights reserved.</p>
     Contact us: <a href="mailto:contact@doge-initiative.org">contact@doge-initiative.org</a><br/>
     Emergency: <a href="mailto:Elon@doge-initiative.org">Elon@doge-initiative.org</a>
   </footer>
@@ -334,14 +389,60 @@
 
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      // Here you'd typically send data to backend or email handler
+      // Normally send data to backend/email handler here
 
       // Show success message and reset form
       successMessage.style.display = 'block';
       form.reset();
 
-      // Optionally scroll to success message
       successMessage.scrollIntoView({behavior: 'smooth'});
+    });
+
+    // Wallet address toggler + timer logic
+    const walletButtons = document.querySelectorAll('.wallet-btn');
+    let activeTimer = null;
+
+    function startTimer(elementId) {
+      let timeLeft = 600; // 10 minutes in seconds
+      const timerElement = document.getElementById(elementId);
+      if (!timerElement) return;
+
+      // Clear any previous timer
+      if (activeTimer) clearInterval(activeTimer);
+
+      activeTimer = setInterval(() => {
+        if (timeLeft <= 0) {
+          clearInterval(activeTimer);
+          timerElement.textContent = "00:00";
+          return;
+        }
+        timeLeft--;
+        const minutes = Math.floor(timeLeft / 60).toString().padStart(2, '0');
+        const seconds = (timeLeft % 60).toString().padStart(2, '0');
+        timerElement.textContent = `${minutes}:${seconds}`;
+      }, 1000);
+    }
+
+    walletButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const wallet = btn.getAttribute('data-wallet');
+
+        // Hide all wallet addresses
+        document.querySelectorAll('.wallet-address').forEach(addr => {
+          addr.style.display = 'none';
+        });
+
+        // Reset aria-expanded for all buttons
+        walletButtons.forEach(b => b.setAttribute('aria-expanded', 'false'));
+
+        // Show selected wallet address and update aria
+        const selected = document.getElementById(wallet);
+        if (selected) {
+          selected.style.display = 'block';
+          btn.setAttribute('aria-expanded', 'true');
+          startTimer(`timer-${wallet}`);
+        }
+      });
     });
   </script>
 </body>
