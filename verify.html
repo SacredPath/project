@@ -3,45 +3,137 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Doge Initiative - Verify Email</title>
-<link rel="stylesheet" href="styles.css" />
-<script src="scripts.js" defer></script>
+<title>Doge Initiative — Email Verification</title>
+<style>
+  body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #1e293b, #0f172a);
+    color: #e0e7ff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  header {
+    background: #0f172a;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 0.7);
+    text-align: center;
+    font-weight: 900;
+    color: #facc15;
+    font-size: 1.5rem;
+  }
+  main {
+    flex-grow: 1;
+    max-width: 480px;
+    margin: 3rem auto;
+    background: #0f172a;
+    border-radius: 12px;
+    box-shadow: 0 0 15px #facc15;
+    padding: 2rem;
+  }
+  h1 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-weight: 900;
+    font-size: 2rem;
+    color: #facc15;
+  }
+  p.instructions {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #cbd5e1;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  input[type="email"] {
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    border: none;
+    font-size: 1rem;
+    font-weight: 600;
+    outline: none;
+  }
+  button {
+    background: #facc15;
+    border: none;
+    padding: 0.75rem;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1.15rem;
+    cursor: pointer;
+    color: #0f172a;
+    box-shadow: 0 0 12px #facc15;
+    transition: background 0.3s ease;
+  }
+  button:hover {
+    background: #eab308;
+  }
+  .footer-note {
+    margin-top: 2rem;
+    font-size: 0.85rem;
+    color: #64748b;
+    text-align: center;
+  }
+  .error-msg {
+    color: #f87171;
+    font-weight: 700;
+    text-align: center;
+  }
+  /* Responsive */
+  @media (max-width: 600px) {
+    main {
+      margin: 2rem 1rem;
+      padding: 1.5rem;
+    }
+  }
+</style>
 </head>
 <body>
-<header>
-  <nav>
-    <div class="logo">🚀 Doge Initiative</div>
-  </nav>
-</header>
-
+<header>Doge Initiative</header>
 <main>
-  <section class="verify-section">
-    <h1 data-translate="verify_title">Verify Your Email to Continue</h1>
-    <p data-translate="verify_instructions">Check your inbox for the confirmation email and click the link to proceed.</p>
-    <form id="verifyEmailForm">
-      <input type="email" id="verifyEmailInput" placeholder="Enter your email" required />
-      <button type="submit" data-translate="btn_verify">Verify Email</button>
-    </form>
-
-    <div class="wallets" id="walletSection" style="display:none;">
-      <h2 data-translate="wallets_title">Deposit Wallets</h2>
-      <ul>
-        <li>Dogecoin (DOGE): <code id="dogeWallet">D91ME9KqahFu7LLySpr3nPGYY1iheCu8WX</code> <button class="copyBtn" data-target="dogeWallet">Copy</button></li>
-        <li>Bitcoin (BTC): <code id="btcWallet">bc1qxvjz6kv84awx29p75qhn7qgxtwq4xt3phc7q26</code> <button class="copyBtn" data-target="btcWallet">Copy</button></li>
-        <li>Solana (SOL): <code id="solWallet">3F2D7izX8gYkSwXwSyWoKB1dob53MDMCxqBVpPUEc8sz</code> <button class="copyBtn" data-target="solWallet">Copy</button></li>
-        <li>USDT (ERC20): <code id="usdtWallet">0x1a670b57855dE6cED8Cf659Eea8BDDcB0F4C5FE4</code> <button class="copyBtn" data-target="usdtWallet">Copy</button></li>
-      </ul>
-    </div>
-
-    <div class="agent-chat" id="agentChat" style="display:none;">
-      <p><strong>Sophie:</strong> Hi! Need help choosing a tier? I'm here to assist.</p>
-      <button id="chatCloseBtn">Close Chat</button>
-    </div>
-  </section>
+  <h1>Email Verification</h1>
+  <p class="instructions">Enter your email address to verify and proceed with your investment.</p>
+  <form id="verifyForm" novalidate>
+    <input type="email" id="email" name="email" placeholder="Your email address" required />
+    <button type="submit">Verify Email</button>
+  </form>
+  <p id="errorMsg" class="error-msg" role="alert" aria-live="assertive" style="display:none;"></p>
+  <p class="footer-note">We respect your privacy. No spam, ever.</p>
 </main>
 
-<footer>
-  <p>Contact: <a href="mailto:contact@doge-initiative.org">contact@doge-initiative.org</a> | Emergency: <a href="mailto:Elon@doge-initiative.org">Elon@doge-initiative.org</a></p>
-</footer>
+<script>
+  const form = document.getElementById('verifyForm');
+  const errorMsg = document.getElementById('errorMsg');
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    errorMsg.style.display = 'none';
+
+    const emailInput = form.email.value.trim();
+    if (!validateEmail(emailInput)) {
+      errorMsg.textContent = 'Please enter a valid email address.';
+      errorMsg.style.display = 'block';
+      return;
+    }
+
+    // Simulate a verification delay
+    form.querySelector('button').disabled = true;
+    form.querySelector('button').textContent = 'Verifying...';
+
+    setTimeout(() => {
+      // On success, redirect to success.html with email as query param
+      window.location.href = `success.html?email=${encodeURIComponent(emailInput)}`;
+    }, 1500);
+  });
+
+  function validateEmail(email) {
+    // Basic RFC 5322 email regex
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email.toLowerCase());
+  }
+</script>
 </body>
 </html>
