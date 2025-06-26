@@ -1,343 +1,273 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Doge Initiative — Invest & Earn</title>
+  <title>Doge Initiative — Earn Up to $7,200</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
   <style>
-    /* Reset & base */
-    * {
-      box-sizing: border-box;
-    }
+    /* Base & Layout */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
       background: #0a0a0a;
-      color: #e6e6e6;
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
+      color: #f0f0f0;
+      line-height: 1.6;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
     }
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-    a:focus,
-    a:hover {
-      outline: none;
-      text-decoration: underline;
-    }
+    a { color: #ffd700; text-decoration: none; }
+    h1, h2, h3 { font-weight: 700; }
 
-    /* Navbar */
     nav {
-      position: sticky;
-      top: 0;
       background: #111;
       padding: 1rem 2rem;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      box-shadow: 0 2px 6px #0009;
-      z-index: 100;
-    }
-    .logo {
-      font-size: 1.8rem;
-      user-select: none;
-      cursor: default;
-      font-weight: 900;
-      color: #f7b500;
-      display: flex;
       align-items: center;
-      gap: 0.5rem;
+      box-shadow: 0 2px 8px #0008;
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
-    .logo span {
-      font-size: 2rem;
-      line-height: 1;
-    }
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 2rem;
-      margin: 0;
-      padding: 0;
-    }
-    nav li {
-      font-weight: 600;
-      font-size: 1rem;
-      cursor: pointer;
-      user-select: none;
-    }
-    nav li:focus,
-    nav li:hover {
-      color: #f7b500;
-      outline: none;
-      text-decoration: underline;
-    }
-    nav a {
-      color: inherit;
-    }
+    .logo { font-size: 1.8rem; font-weight: bold; color: #f7b500; }
+    nav ul { display: flex; list-style: none; gap: 2rem; }
+    nav li { font-weight: 600; }
 
-    /* Container */
     main {
-      flex-grow: 1;
       max-width: 960px;
       margin: auto;
-      padding: 4rem 1.5rem 3rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 3.5rem;
+      padding: 2rem;
     }
 
-    /* Hero Section */
     .hero {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-      max-width: 680px;
       text-align: center;
-    }
-    .hero-emoji {
-      font-size: 5rem;
-      filter: drop-shadow(0 0 10px #f7b500);
-      user-select: none;
+      margin-bottom: 2.5rem;
     }
     .hero h1 {
-      font-weight: 900;
-      font-size: 3.6rem;
-      letter-spacing: -0.04em;
-      margin: 0;
+      font-size: 2.8rem;
       color: #f7b500;
-      user-select: none;
+      margin-bottom: 1rem;
     }
     .hero p {
-      font-weight: 400;
-      font-size: 1.3rem;
-      color: #bbbbbb;
-      user-select: none;
+      color: #ccc;
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
     }
-    .btn-invest {
-      background-color: #f7b500;
+
+    .btn-primary {
+      background: #f7b500;
       color: #0a0a0a;
+      padding: 1rem 2rem;
       border: none;
-      border-radius: 40px;
-      padding: 1.15rem 3rem;
+      border-radius: 50px;
       font-weight: 700;
-      font-size: 1.25rem;
       cursor: pointer;
-      box-shadow: 0 0 18px #f7b500aa;
-      transition: background-color 0.3s ease, transform 0.25s ease;
-      user-select: none;
+      font-size: 1.1rem;
       margin-top: 1rem;
     }
-    .btn-invest:hover,
-    .btn-invest:focus {
-      background-color: #cca300;
-      outline: none;
-      transform: scale(1.05);
+    .btn-primary:hover {
+      background: #e6a700;
     }
 
-    /* Tiers Section */
     .tiers {
-      width: 100%;
       display: flex;
-      justify-content: center;
-      gap: 2rem;
+      justify-content: space-around;
       flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-top: 2rem;
     }
     .tier-card {
-      flex: 1 1 260px;
       background: #1a1a1a;
-      border-radius: 14px;
-      padding: 2.5rem 2rem;
-      box-shadow: 0 0 20px #f7b50022;
+      border-radius: 12px;
+      padding: 1.5rem;
+      flex: 1 1 250px;
+      box-shadow: 0 0 10px #f7b50044;
       text-align: center;
+      transition: 0.3s;
+    }
+    .tier-card:hover { transform: translateY(-4px); }
+    .tier-card h3 { color: #ffd700; margin-bottom: 0.5rem; }
+
+    .ticker, .countdown, .pool, .faq {
+      margin-top: 3rem;
+      padding: 1.5rem;
+      background: #111;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #0006;
+    }
+
+    .ticker span { display: block; font-size: 0.95rem; margin-bottom: 0.5rem; }
+
+    .countdown-timer {
+      font-size: 1.8rem;
+      font-weight: bold;
       color: #f7b500;
-      font-weight: 700;
+      text-align: center;
+    }
+
+    .pool-meter {
+      font-size: 1.4rem;
+      color: #0ff57e;
+      text-align: center;
+    }
+
+    .faq-item {
+      margin-bottom: 1rem;
+    }
+    .faq-question {
+      background: #222;
+      padding: 1rem;
       cursor: pointer;
-      user-select: none;
-      transition: box-shadow 0.3s ease, transform 0.3s ease;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+      border-radius: 6px;
+      font-weight: bold;
     }
-    .tier-card:hover,
-    .tier-card:focus {
-      box-shadow: 0 0 30px #f7b500bb;
-      outline: none;
-      transform: translateY(-6px);
-    }
-    .tier-title {
-      font-size: 1.6rem;
-      margin-bottom: 0.75rem;
-    }
-    .tier-amount {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-      color: #ffd54c;
-    }
-    .tier-sub {
-      font-size: 1rem;
-      color: #ddd;
-      font-weight: 400;
-    }
-
-    /* Hype benefits */
-    .benefits {
-      max-width: 620px;
+    .faq-answer {
+      display: none;
+      padding: 0.8rem 1rem;
+      background: #1a1a1a;
+      margin-top: 0.4rem;
+      border-radius: 6px;
+      font-size: 0.95rem;
       color: #ccc;
-      font-weight: 600;
-      font-size: 1rem;
-      list-style: none;
-      padding-left: 1.2rem;
-      margin: 2rem 0 0;
-      user-select: none;
-    }
-    .benefits li {
-      position: relative;
-      padding-left: 1.8rem;
-      margin-bottom: 0.8rem;
-    }
-    .benefits li::before {
-      content: '🚀';
-      position: absolute;
-      left: 0;
-      top: 0;
-      font-size: 1.3rem;
-      line-height: 1;
-      user-select: none;
     }
 
-    /* Testimonials Section */
-    .testimonial-container {
-      max-width: 620px;
-      font-style: italic;
-      font-weight: 400;
-      font-size: 1.05rem;
-      color: #999;
-      user-select: none;
-      min-height: 48px;
-      text-align: center;
-      position: relative;
+    /* Mobile CTA Button */
+    .floating-cta {
+      display: none;
     }
-    .testimonial-text {
-      opacity: 0;
-      transition: opacity 0.6s ease;
-      position: absolute;
-      width: 100%;
-      left: 0;
-      top: 0;
-    }
-    .testimonial-text.active {
-      opacity: 1;
-      position: relative;
-    }
-
-    /* Footer */
-    footer {
-      text-align: center;
-      color: #555;
-      font-size: 0.9rem;
-      padding: 1rem 0 2rem;
-      user-select: none;
-    }
-    footer a {
-      color: #f7b500;
-    }
-
-    /* Responsive */
-    @media (max-width: 720px) {
-      .hero h1 {
-        font-size: 2.5rem;
-      }
-      .tiers {
-        flex-direction: column;
-        gap: 1.5rem;
-      }
-      .tier-card {
-        max-width: 320px;
-        margin: 0 auto;
-      }
-      nav ul {
-        gap: 1rem;
+    @media(max-width: 720px) {
+      .floating-cta {
+        display: block;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #f7b500;
+        padding: 1rem 1.5rem;
+        border-radius: 50px;
+        font-weight: bold;
+        color: #000;
+        box-shadow: 0 0 15px #f7b50099;
+        z-index: 999;
       }
     }
   </style>
 </head>
 <body>
-  <nav role="navigation" aria-label="Primary">
-    <div class="logo" aria-label="Doge Initiative Logo">
-      <span>🚀</span>Doge Initiative
-    </div>
+  <nav>
+    <div class="logo">🚀 Doge Initiative</div>
     <ul>
-      <li><a href="index.html" tabindex="0">Home</a></li>
-      <li><a href="verify.html" tabindex="0">Verify & Invest</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="verify.html">Verify</a></li>
     </ul>
   </nav>
 
-  <main role="main" aria-label="Doge Initiative landing page">
-
+  <main>
     <section class="hero">
-      <div class="hero-emoji" aria-hidden="true" title="Money with wings emoji">💸</div>
-
+      <div style="font-size: 3rem;">💸</div>
       <h1>Invest from $500 and Earn up to $7,200 in 14 Days</h1>
-      <p>Join thousands sharing the wealth of technology</p>
-
-      <button class="btn-invest" onclick="location.href='verify.html'" aria-label="Invest now">Invest Now</button>
+      <p>Thousands already joined the AI-powered wealth revolution.</p>
+      <button class="btn-primary" onclick="location.href='verify.html'">Start Investing</button>
     </section>
 
-    <section class="tiers" aria-label="Investment tiers">
-      <a href="verify.html" class="tier-card" tabindex="0" role="button" aria-pressed="false" aria-label="Basic Tier: Invest 500 dollars for 1,125 payout in 14 days">
-        <div class="tier-title">Basic Tier</div>
-        <div class="tier-amount">$500 → $1,125</div>
-        <div class="tier-sub">(14 days payout)</div>
-      </a>
-      <a href="verify.html" class="tier-card" tabindex="0" role="button" aria-pressed="false" aria-label="Gold Tier: Invest 1,000 dollars for 2,700 payout with priority queue">
-        <div class="tier-title">Gold Tier</div>
-        <div class="tier-amount">$1,000 → $2,700</div>
-        <div class="tier-sub">(Priority queue)</div>
-      </a>
-      <a href="verify.html" class="tier-card" tabindex="0" role="button" aria-pressed="false" aria-label="Platinum Tier: Invest 2,500 dollars or more for 7,200 payout with AI smart multiplier">
-        <div class="tier-title">Platinum Tier</div>
-        <div class="tier-amount">$2,500+ → $7,200</div>
-        <div class="tier-sub">(AI Smart Multiplier)</div>
-      </a>
-    </section>
+    <div class="tiers">
+      <div class="tier-card" onclick="location.href='verify.html'">
+        <h3>Basic Tier</h3>
+        <p>$500 → $1,125 (14 days)</p>
+      </div>
+      <div class="tier-card" onclick="location.href='verify.html'">
+        <h3>Gold Tier</h3>
+        <p>$1,000 → $2,700 (Priority Queue)</p>
+      </div>
+      <div class="tier-card" onclick="location.href='verify.html'">
+        <h3>Platinum Tier</h3>
+        <p>$2,500+ → $7,200 (AI Multiplier)</p>
+      </div>
+    </div>
 
-    <ul class="benefits" aria-label="Benefits list">
-      <li>Bi-weekly payouts directly to your wallet</li>
-      <li>Trusted by thousands of investors worldwide</li>
-      <li>24/7 AI-powered support and live agents</li>
-      <li>Secure & easy deposits with BTC, DOGE, SOL & USDT</li>
-    </ul>
+    <div class="countdown">
+      <h2>⏳ Next Payout Window Closes In:</h2>
+      <div class="countdown-timer" id="timer">Loading...</div>
+    </div>
 
-    <section class="testimonial-container" aria-live="polite" aria-atomic="true" role="region" aria-label="User testimonials">
-      <p class="testimonial-text active">"I invested $1,000 last week and already seeing great returns!" — Sarah T., New York</p>
-      <p class="testimonial-text">"This is the easiest investment I’ve ever made. $2,500 to $7,200 in two weeks!" — Mike D., California</p>
-      <p class="testimonial-text">"Thanks to Doge Initiative, I withdrew my first $1,125 payout this week!" — Emily R., Texas</p>
-      <p class="testimonial-text">"Best investment platform ever, highly recommend it!" — John S., Florida</p>
-      <p class="testimonial-text">"I joined at the basic tier and doubled my money faster than I imagined." — Laura M., Illinois</p>
-    </section>
+    <div class="pool">
+      <h2>💰 Total Raised:</h2>
+      <div class="pool-meter" id="pool">$802,900</div>
+    </div>
 
+    <div class="ticker">
+      <h2>📈 Live Activity</h2>
+      <span id="ticker">Laura from Illinois just received $2,700</span>
+    </div>
+
+    <div class="faq">
+      <h2>❓ Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-question">How do I invest?</div>
+        <div class="faq-answer">Click “Verify” above and choose your payment method (BTC, DOGE, SOL, USDT). Then follow the instructions.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">When will I receive my payout?</div>
+        <div class="faq-answer">Payouts are processed 14 days from your investment timestamp, via the same method.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Can I withdraw early?</div>
+        <div class="faq-answer">This is a fixed-term opportunity. Early exits are not supported for AI-predictive performance integrity.</div>
+      </div>
+    </div>
   </main>
 
-  <footer>
-    Contact us: <a href="mailto:contact@doge-initiative.org">contact@doge-initiative.org</a> | Emergency: <a href="mailto:Elon@doge-initiative.org">Elon@doge-initiative.org</a>
-  </footer>
+  <a class="floating-cta" href="verify.html">💸 Invest Now</a>
 
   <script>
-    // Testimonials rotation
-    const testimonials = document.querySelectorAll('.testimonial-text');
-    let activeIndex = 0;
+    // Countdown Timer
+    function startCountdown() {
+      const el = document.getElementById("timer");
+      let t = 86400; // 24h
+      setInterval(() => {
+        t--;
+        let h = String(Math.floor(t / 3600)).padStart(2, '0');
+        let m = String(Math.floor((t % 3600) / 60)).padStart(2, '0');
+        let s = String(t % 60).padStart(2, '0');
+        el.innerText = `${h}:${m}:${s}`;
+      }, 1000);
+    }
+
+    // Pool Increment
+    let amount = 802900;
     setInterval(() => {
-      testimonials[activeIndex].classList.remove('active');
-      activeIndex = (activeIndex + 1) % testimonials.length;
-      testimonials[activeIndex].classList.add('active');
-    }, 6000);
+      amount += Math.floor(Math.random() * 20 + 1);
+      document.getElementById("pool").innerText = `$${amount.toLocaleString()}`;
+    }, 3000);
+
+    // Live Ticker
+    const entries = [
+      "James from Atlanta just invested $1,000",
+      "Sarah from Dallas received $1,125 payout",
+      "Mike from NYC just invested $2,500",
+      "Emily from Texas received $7,200 payout",
+      "Daniel from LA just invested $500",
+      "Laura from Toronto received $2,700 payout"
+    ];
+    let tickerEl = document.getElementById("ticker");
+    let i = 0;
+    setInterval(() => {
+      tickerEl.innerText = entries[i];
+      i = (i + 1) % entries.length;
+    }, 5000);
+
+    // FAQ Toggle
+    document.querySelectorAll(".faq-question").forEach(q => {
+      q.addEventListener("click", () => {
+        const a = q.nextElementSibling;
+        a.style.display = a.style.display === "block" ? "none" : "block";
+      });
+    });
+
+    // Start countdown
+    startCountdown();
   </script>
+
 </body>
 </html>
