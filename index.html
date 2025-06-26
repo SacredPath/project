@@ -1,259 +1,486 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Doge Initiative — Invest $500, Earn Big</title>
-<style>
-  /* Reset & base */
-  * { margin:0; padding:0; box-sizing: border-box; }
-  body {
-    font-family: 'Inter', sans-serif;
-    background: linear-gradient(135deg, #1e293b, #0f172a);
-    color: #e0e7ff;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-  header {
-    background: #0f172a;
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 2px 8px rgb(0 0 0 / 0.7);
-  }
-  header .logo {
-    font-weight: 900;
-    font-size: 1.5rem;
-    letter-spacing: 2px;
-    color: #facc15;
-    cursor: default;
-  }
-  nav {
-    display: flex;
-    gap: 1.5rem;
-  }
-  nav a {
-    color: #e0e7ff;
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s ease;
-  }
-  nav a:hover {
-    color: #facc15;
-  }
-  main {
-    flex-grow: 1;
-    padding: 2rem;
-    max-width: 960px;
-    margin: 0 auto;
-  }
-  .hero {
-    text-align: center;
-    margin-bottom: 3rem;
-  }
-  .hero h1 {
-    font-size: 2.8rem;
-    font-weight: 900;
-    margin-bottom: 0.5rem;
-    color: #facc15;
-    text-shadow: 0 0 6px #facc15;
-  }
-  .hero p {
-    font-size: 1.25rem;
-    margin-bottom: 1.25rem;
-    color: #cbd5e1;
-  }
-  .btn-primary {
-    background: #facc15;
-    border: none;
-    color: #0f172a;
-    font-weight: 700;
-    font-size: 1.15rem;
-    padding: 0.75rem 2rem;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-    text-transform: uppercase;
-    box-shadow: 0 0 15px #facc15;
-  }
-  .btn-primary:hover {
-    background: #eab308;
-  }
-  .tiers {
-    background: #0f172a;
-    border-radius: 12px;
-    padding: 1.5rem;
-    box-shadow: 0 0 12px rgb(250 204 21 / 0.4);
-    margin-bottom: 3rem;
-  }
-  .tiers h2 {
-    text-align: center;
-    font-weight: 800;
-    color: #fbbf24;
-    margin-bottom: 1rem;
-  }
-  .tiers ul {
-    list-style: none;
-    max-width: 640px;
-    margin: 0 auto;
-  }
-  .tiers li {
-    background: #1e293b;
-    margin-bottom: 1rem;
-    padding: 1rem 1.5rem;
-    border-radius: 8px;
-    font-weight: 700;
-    font-size: 1.1rem;
-    color: #facc15;
-    box-shadow: inset 0 0 8px #facc15;
-  }
-  .wallets {
-    margin-bottom: 3rem;
-    max-width: 720px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .wallets h2 {
-    color: #facc15;
-    font-weight: 900;
-    margin-bottom: 1rem;
-    text-align: center;
-  }
-  .wallets .wallet-item {
-    background: #1e293b;
-    padding: 1rem 1.5rem;
-    border-radius: 8px;
-    margin-bottom: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-    box-shadow: 0 0 10px #facc15;
-    transition: background 0.3s ease;
-  }
-  .wallets .wallet-item:hover {
-    background: #facc15;
-    color: #0f172a;
-  }
-  .wallets .wallet-name {
-    font-weight: 700;
-    font-size: 1.1rem;
-  }
-  .wallets .wallet-address {
-    font-family: monospace;
-    user-select: all;
-    max-width: 400px;
-    overflow-x: auto;
-  }
-  .wallets .copy-btn {
-    background: #0f172a;
-    border: none;
-    padding: 0.3rem 0.7rem;
-    border-radius: 5px;
-    font-weight: 700;
-    color: #facc15;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-  .wallets .copy-btn:hover {
-    background: #eab308;
-  }
-  footer {
-    padding: 1rem 2rem;
-    text-align: center;
-    background: #0f172a;
-    color: #64748b;
-    font-size: 0.9rem;
-    box-shadow: inset 0 1px 5px #000000;
-  }
-  /* Responsive */
-  @media (max-width: 600px) {
-    .hero h1 {
-      font-size: 2rem;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Doge Initiative — Invest from $500, Earn up to $7,200 in 14 Days</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: #e0e7ff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      scroll-behavior: smooth;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    header {
+      background: #0f172a;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.7);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-weight: 900;
+      font-size: 1.5rem;
+      letter-spacing: 2px;
+      color: #facc15;
+      user-select: none;
+      cursor: default;
+    }
+    .logo svg {
+      width: 32px;
+      height: 32px;
     }
     nav {
-      flex-direction: column;
-      gap: 0.5rem;
-      align-items: center;
+      display: flex;
+      gap: 1.5rem;
     }
-    .wallets .wallet-item {
-      flex-direction: column;
-      gap: 0.5rem;
-      align-items: flex-start;
+    nav a {
+      font-weight: 600;
+      padding: 0.25rem 0.5rem;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
     }
-    .wallets .wallet-address {
+    nav a:hover,
+    nav a:focus-visible {
+      background: #facc15;
+      color: #0f172a;
+      outline-offset: 2px;
+      outline: 2px solid #facc15;
+    }
+    main {
+      flex-grow: 1;
+      max-width: 960px;
+      margin: 2rem auto 4rem;
+      padding: 0 1rem;
+    }
+    .hero {
+      text-align: center;
+      margin-bottom: 3rem;
+      user-select: none;
+    }
+    .hero h1 {
+      font-size: 2.6rem;
+      font-weight: 900;
+      color: #facc15;
+      text-shadow: 0 0 10px #facc15;
+      margin-bottom: 0.8rem;
+      line-height: 1.2;
+    }
+    .hero p {
+      font-size: 1.25rem;
+      color: #cbd5e1;
+      margin-bottom: 1.8rem;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .btn-primary {
+      background: #facc15;
+      color: #0f172a;
+      font-weight: 700;
+      font-size: 1.25rem;
+      padding: 0.9rem 3rem;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 0 20px #facc15;
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+    .btn-primary:hover,
+    .btn-primary:focus-visible {
+      background: #eab308;
+      outline-offset: 3px;
+      outline: 3px solid #eab308;
+    }
+
+    /* Investment tiers */
+    .tiers {
+      max-width: 680px;
+      margin: 0 auto 3rem;
+      background: #1e293b;
+      border-radius: 16px;
+      padding: 1.8rem 2rem;
+      box-shadow: 0 0 25px #facc15aa inset;
+      user-select: none;
+    }
+    .tiers h2 {
+      text-align: center;
+      color: #fbbf24;
+      font-weight: 900;
+      font-size: 1.9rem;
+      margin-bottom: 1rem;
+    }
+    .tiers ul {
+      list-style: none;
+      font-weight: 700;
+      color: #facc15;
+      font-size: 1.2rem;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .tiers li {
+      background: #334155;
+      padding: 0.7rem 1.2rem;
+      border-radius: 10px;
+      flex: 1 1 180px;
+      text-align: center;
+      box-shadow: inset 0 0 12px #facc15;
+      transition: background-color 0.3s ease;
+      cursor: default;
+      user-select: text;
+    }
+    .tiers li:hover {
+      background: #facc15;
+      color: #0f172a;
+      box-shadow: 0 0 20px #facc15;
+    }
+
+    /* Wallet tabs */
+    .wallets {
+      max-width: 680px;
+      margin: 0 auto 3rem;
+      background: #1e293b;
+      border-radius: 16px;
+      padding: 2rem 2rem 3rem;
+      box-shadow: 0 0 25px #facc15aa inset;
+      user-select: none;
+    }
+    .wallets h2 {
+      text-align: center;
+      color: #facc15;
+      font-weight: 900;
+      font-size: 1.9rem;
+      margin-bottom: 1rem;
+    }
+    .wallet-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .wallet-tab {
+      background: #334155;
+      padding: 0.7rem 1.5rem;
+      border-radius: 12px;
+      font-weight: 700;
+      color: #facc15;
+      cursor: pointer;
+      box-shadow: inset 0 0 12px #facc15;
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+    .wallet-tab.active,
+    .wallet-tab:hover {
+      background: #facc15;
+      color: #0f172a;
+      box-shadow: 0 0 20px #facc15;
+    }
+    .wallet-address {
+      background: #0f172a;
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      font-family: monospace;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #facc15;
       max-width: 100%;
+      overflow-x: auto;
+      user-select: all;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 0 20px #facc15;
     }
-  }
-</style>
+    .copy-btn {
+      background: transparent;
+      border: 2px solid #facc15;
+      color: #facc15;
+      font-weight: 700;
+      padding: 0.2rem 0.8rem;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-left: 1rem;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+    }
+    .copy-btn:hover,
+    .copy-btn:focus-visible {
+      background: #facc15;
+      color: #0f172a;
+      outline-offset: 3px;
+      outline: 3px solid #facc15;
+    }
+
+    /* Testimonials */
+    .testimonials {
+      max-width: 680px;
+      margin: 0 auto 3rem;
+      background: #1e293b;
+      border-radius: 16px;
+      padding: 1.5rem 2rem;
+      box-shadow: 0 0 15px #facc15aa inset;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #facc15;
+      height: 4.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+    }
+
+    /* Live activity popup */
+    .live-activity {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      background: #facc15;
+      color: #0f172a;
+      font-weight: 700;
+      border-radius: 14px;
+      padding: 0.9rem 1.6rem;
+      box-shadow: 0 0 25px #facc15;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      opacity: 0;
+      pointer-events: none;
+      user-select: none;
+      transition: opacity 0.4s ease;
+      z-index: 1500;
+    }
+    .live-activity.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .live-activity svg {
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+
+    /* Footer */
+    footer {
+      background: #0f172a;
+      color: #64748b;
+      text-align: center;
+      padding: 1.2rem 2rem;
+      font-size: 0.9rem;
+      user-select: none;
+    }
+    footer a {
+      color: #facc15;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    footer a:hover,
+    footer a:focus-visible {
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .wallet-tabs {
+        gap: 0.5rem;
+      }
+      .wallet-tab {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+      }
+      .wallet-address {
+        font-size: 0.9rem;
+      }
+      .btn-primary {
+        padding: 0.7rem 2rem;
+        font-size: 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
 <header>
-  <div class="logo">DOGE INITIATIVE</div>
-  <nav>
-    <a href="index.html">Home</a>
+  <div class="logo" aria-label="Doge Initiative logo">
+    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" focusable="false">
+      <path fill="#FACC15" d="M32 2C32 2 45 12 45 32C45 52 32 62 32 62C32 62 19 52 19 32C19 12 32 2 32 2Z"/>
+      <circle cx="32" cy="32" r="8" fill="#1E293B"/>
+      <path stroke="#FACC15" stroke-width="2" d="M32 14V20" stroke-linecap="round"/>
+      <path stroke="#FACC15" stroke-width="2" d="M32 44V50" stroke-linecap="round"/>
+      <path stroke="#FACC15" stroke-width="2" d="M24 32H18" stroke-linecap="round"/>
+      <path stroke="#FACC15" stroke-width="2" d="M46 32H40" stroke-linecap="round"/>
+    </svg>
+    DOGE INITIATIVE
+  </div>
+  <nav role="navigation" aria-label="Main navigation">
+    <a href="index.html" aria-current="page">Home</a>
     <a href="audit.html">Audit</a>
     <a href="chatbot.html">Chat</a>
   </nav>
 </header>
+
 <main>
-  <section class="hero" aria-label="Hero section">
+  <section class="hero" aria-label="Main hero section">
     <h1>Invest from $500 and Earn up to $7,200 in 14 Days</h1>
     <p>Join thousands sharing the wealth of technology.</p>
-    <button class="btn-primary" onclick="location.href='verify.html'">Get Started</button>
+    <button class="btn-primary" onclick="location.href='verify.html'" aria-label="Start investing">Get Started</button>
   </section>
 
   <section class="tiers" aria-label="Investment tiers">
     <h2>Investment Tiers</h2>
     <ul>
-      <li><strong>Basic Tier:</strong> $500 → $1,125 payout (14 days)</li>
-      <li><strong>Gold Tier:</strong> $1,000 → $2,700 payout (Priority queue)</li>
-      <li><strong>Platinum Tier:</strong> $2,500+ → $7,200 payout (AI Smart Multiplier)</li>
+      <li>Basic Tier: <strong>$500 → $1,125 payout (14 days)</strong></li>
+      <li>Gold Tier: <strong>$1,000 → $2,700 payout (Priority queue)</strong></li>
+      <li>Platinum Tier: <strong>$2,500+ → $7,200 payout (AI Smart Multiplier)</strong></li>
     </ul>
   </section>
 
-  <section class="wallets" aria-label="Wallet addresses for deposits">
-    <h2>Deposit Wallets</h2>
-
-    <div class="wallet-item" tabindex="0" onclick="copyToClipboard('dogeWallet')">
-      <div class="wallet-name">Dogecoin (DOGE)</div>
-      <code class="wallet-address" id="dogeWallet">D91ME9KqahFu7LLySpr3nPGYY1iheCu8WX</code>
-      <button class="copy-btn" aria-label="Copy Dogecoin wallet address">Copy</button>
+  <section class="wallets" aria-label="Deposit wallets">
+    <h2>Deposit Wallets (Select one)</h2>
+    <div class="wallet-tabs" role="tablist" aria-label="Select wallet cryptocurrency">
+      <button class="wallet-tab active" role="tab" aria-selected="true" aria-controls="wallet-doge" id="tab-doge" tabindex="0" type="button">DOGE</button>
+      <button class="wallet-tab" role="tab" aria-selected="false" aria-controls="wallet-btc" id="tab-btc" tabindex="-1" type="button">BTC</button>
+      <button class="wallet-tab" role="tab" aria-selected="false" aria-controls="wallet-sol" id="tab-sol" tabindex="-1" type="button">SOL</button>
+      <button class="wallet-tab" role="tab" aria-selected="false" aria-controls="wallet-usdt" id="tab-usdt" tabindex="-1" type="button">USDT (ERC-20)</button>
     </div>
-
-    <div class="wallet-item" tabindex="0" onclick="copyToClipboard('btcWallet')">
-      <div class="wallet-name">Bitcoin (BTC)</div>
-      <code class="wallet-address" id="btcWallet">bc1qxvjz6kv84awx29p75qhn7qgxtwq4xt3phc7q26</code>
-      <button class="copy-btn" aria-label="Copy Bitcoin wallet address">Copy</button>
+    <div id="wallet-doge" class="wallet-address" role="tabpanel" aria-labelledby="tab-doge">
+      D91ME9KqahFu7LLySpr3nPGYY1iheCu8WX
+      <button class="copy-btn" aria-label="Copy DOGE wallet address" type="button" data-clipboard-text="D91ME9KqahFu7LLySpr3nPGYY1iheCu8WX">Copy</button>
     </div>
-
-    <div class="wallet-item" tabindex="0" onclick="copyToClipboard('solWallet')">
-      <div class="wallet-name">Solana (SOL)</div>
-      <code class="wallet-address" id="solWallet">3F2D7izX8gYkSwXwSyWoKB1dob53MDMCxqBVpPUEc8sz</code>
-      <button class="copy-btn" aria-label="Copy Solana wallet address">Copy</button>
+    <div id="wallet-btc" class="wallet-address" role="tabpanel" aria-labelledby="tab-btc" hidden>
+      bc1qxvjz6kv84awx29p75qhn7qgxtwq4xt3phc7q26
+      <button class="copy-btn" aria-label="Copy BTC wallet address" type="button" data-clipboard-text="bc1qxvjz6kv84awx29p75qhn7qgxtwq4xt3phc7q26">Copy</button>
     </div>
-
-    <div class="wallet-item" tabindex="0" onclick="copyToClipboard('usdtWallet')">
-      <div class="wallet-name">USDT (ERC20)</div>
-      <code class="wallet-address" id="usdtWallet">0x1a670b57855dE6cED8Cf659Eea8BDDcB0F4C5FE4</code>
-      <button class="copy-btn" aria-label="Copy USDT wallet address">Copy</button>
+    <div id="wallet-sol" class="wallet-address" role="tabpanel" aria-labelledby="tab-sol" hidden>
+      3F2D7izX8gYkSwXwSyWoKB1dob53MDMCxqBVpPUEc8sz
+      <button class="copy-btn" aria-label="Copy SOL wallet address" type="button" data-clipboard-text="3F2D7izX8gYkSwXwSyWoKB1dob53MDMCxqBVpPUEc8sz">Copy</button>
+    </div>
+    <div id="wallet-usdt" class="wallet-address" role="tabpanel" aria-labelledby="tab-usdt" hidden>
+      0x1a670b57855dE6cED8Cf659Eea8BDDcB0F4C5FE4
+      <button class="copy-btn" aria-label="Copy USDT (ERC-20) wallet address" type="button" data-clipboard-text="0x1a670b57855dE6cED8Cf659Eea8BDDcB0F4C5FE4">Copy</button>
     </div>
   </section>
+
+  <section class="testimonials" aria-live="polite" aria-atomic="true" role="region" aria-label="User testimonials">
+    "I invested $1,000 last week and already seeing great returns!" — Sarah T., New York
+  </section>
 </main>
+
+<div class="live-activity" aria-live="assertive" role="alert" aria-atomic="true" style="display:none;">
+  <svg fill="#0f172a" viewBox="0 0 20 20" aria-hidden="true" focusable="false" width="20" height="20">
+    <path d="M10 0C4.5 0 0 4.5 0 10s4.5 10 10 10 10-4.5 10-10S15.5 0 10 0zm0 18.2A8.2 8.2 0 1 1 18.2 10 8.21 8.21 0 0 1 10 18.2z"/>
+    <path d="M13.7 7.7a.7.7 0 0 0-1 0l-3 3-1-1a.7.7 0 1 0-1 1l1.5 1.5a.7.7 0 0 0 1 0l3.5-3.5a.7.7 0 0 0 0-1z"/>
+  </svg>
+  <span id="liveText">John from Texas just invested $1,000 in DOGE!</span>
+</div>
+
 <footer>
-  Contact us: <a href="mailto:contact@doge-initiative.org" style="color:#facc15;">contact@doge-initiative.org</a> | Emergency: <a href="mailto:Elon@doge-initiative.org" style="color:#facc15;">Elon@doge-initiative.org</a>
+  Contact us: <a href="mailto:contact@doge-initiative.org">contact@doge-initiative.org</a> | Emergency: <a href="mailto:Elon@doge-initiative.org">Elon@doge-initiative.org</a>
 </footer>
+
 <script>
-  function copyToClipboard(id) {
-    const el = document.getElementById(id);
-    if (!el) return;
-    const text = el.textContent || el.innerText;
-    navigator.clipboard.writeText(text).then(() => {
-      alert('Copied: ' + text);
+  // Wallet tabs logic
+  const tabs = document.querySelectorAll('.wallet-tab');
+  const panels = document.querySelectorAll('[role="tabpanel"]');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+        t.setAttribute('tabindex', '-1');
+      });
+      panels.forEach(p => p.hidden = true);
+
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
+      tab.setAttribute('tabindex', '0');
+      const panel = document.getElementById(tab.getAttribute('aria-controls'));
+      panel.hidden = false;
+      panel.querySelector('button.copy-btn').textContent = "Copy";
     });
+  });
+
+  // Clipboard copy buttons
+  const copyButtons = document.querySelectorAll('.copy-btn');
+  copyButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const address = btn.getAttribute('data-clipboard-text');
+      navigator.clipboard.writeText(address).then(() => {
+        btn.textContent = "Copied!";
+        setTimeout(() => btn.textContent = "Copy", 1500);
+      }).catch(() => {
+        btn.textContent = "Error";
+      });
+    });
+  });
+
+  // Testimonials cycling
+  const testimonials = [
+    '"I invested $1,000 last week and already seeing great returns!" — Sarah T., New York',
+    '"This is the easiest investment I’ve ever made. $2,500 to $7,200 in two weeks!" — Mike D., California',
+    '"Thanks to Doge Initiative, I withdrew my first $1,125 payout this week!" — Emily R., Texas',
+    '"Best investment platform ever, highly recommend it!" — John S., Florida',
+    '"I joined at the basic tier and doubled my money faster than I imagined." — Laura M., Illinois'
+  ];
+  const testimonialEl = document.querySelector('.testimonials');
+  let tIndex = 0;
+
+  setInterval(() => {
+    tIndex = (tIndex + 1) % testimonials.length;
+    testimonialEl.textContent = testimonials[tIndex];
+  }, 8000);
+
+  // Live activity popup
+  const liveMessages = [
+    "John from Texas just invested $1,000 in DOGE!",
+    "Emily from Florida just deposited $500 in BTC!",
+    "Mike from California is upgrading to Platinum Tier!",
+    "Laura from Illinois just received her payout!",
+    "Sarah from New York reinvested $2,700!"
+  ];
+  const liveActivity = document.querySelector('.live-activity');
+  const liveText = document.getElementById('liveText');
+
+  function showLiveActivity() {
+    const msg = liveMessages[Math.floor(Math.random() * liveMessages.length)];
+    liveText.textContent = msg;
+    liveActivity.style.display = 'flex';
+    liveActivity.classList.add('show');
+    setTimeout(() => {
+      liveActivity.classList.remove('show');
+      setTimeout(() => {
+        liveActivity.style.display = 'none';
+      }, 400);
+    }, 7000);
   }
+  setInterval(showLiveActivity, 12000);
+  // Show once on load
+  showLiveActivity();
+
 </script>
 </body>
 </html>
