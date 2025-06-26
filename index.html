@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Doge Initiative - Invest & Earn</title>
+<link rel="stylesheet" href="styles.css" />
+<script src="scripts.js" defer></script>
+</head>
+<body>
+<header>
+  <nav>
+    <div class="logo">🚀 Doge Initiative</div>
+    <div class="lang-toggle" id="langToggle">
+      🇺🇸 <span class="active" data-lang="en">EN</span> | 🇪🇸 <span data-lang="es">ES</span> | 🇩🇪 <span data-lang="de">DE</span>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <h1 data-translate="hero_title">Invest as low as $500 and earn up to $7,200 in 14 days!</h1>
+    <p data-translate="hero_subtitle">Join thousands who are sharing the wealth of technology.</p>
+    <form id="emailForm">
+      <input type="email" id="emailInput" placeholder="Enter your email" required />
+      <button type="submit" data-translate="btn_get_started">Get Started</button>
+    </form>
+  </section>
+
+  <section class="tiers">
+    <h2 data-translate="tiers_title">Investment Tiers</h2>
+    <ul>
+      <li><strong>Basic Tier:</strong> $500 → $1,125 payout (14 days)</li>
+      <li><strong>Gold Tier:</strong> $1,000 → $2,700 payout (Priority queue)</li>
+      <li><strong>Platinum Tier:</strong> $2,500+ → $7,200 payout (AI Smart Multiplier)</li>
+    </ul>
+  </section>
+
+  <section class="wallets">
+    <h2 data-translate="wallets_title">Deposit Wallets</h2>
+    <ul>
+      <li>Dogecoin (DOGE): <code id="dogeWallet">D91ME9KqahFu7LLySpr3nPGYY1iheCu8WX</code> <button class="copyBtn" data-target="dogeWallet">Copy</button></li>
+      <li>Bitcoin (BTC): <code id="btcWallet">bc1qxvjz6kv84awx29p75qhn7qgxtwq4xt3phc7q26</code> <button class="copyBtn" data-target="btcWallet">Copy</button></li>
+      <li>Solana (SOL): <code id="solWallet">3F2D7izX8gYkSwXwSyWoKB1dob53MDMCxqBVpPUEc8sz</code> <button class="copyBtn" data-target="solWallet">Copy</button></li>
+      <li>USDT (ERC20): <code id="usdtWallet">0x1a670b57855dE6cED8Cf659Eea8BDDcB0F4C5FE4</code> <button class="copyBtn" data-target="usdtWallet">Copy</button></li>
+    </ul>
+    <p class="secure-note">🔒 Your connection is secured.</p>
+  </section>
+
+  <section class="social-proof">
+    <h2 data-translate="social_proof_title">What Others Are Saying</h2>
+    <img src="images/reddit_review_cryptostacker97.png" alt="Reddit review" />
+  </section>
+</main>
+
+<footer>
+  <p>Contact: <a href="mailto:contact@doge-initiative.org">contact@doge-initiative.org</a> | Emergency: <a href="mailto:Elon@doge-initiative.org">Elon@doge-initiative.org</a></p>
+  <p>© 2025 Doge Initiative. All rights reserved.</p>
+</footer>
+</body>
+</html>
