@@ -1,162 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Doge Initiative — Earn Up to $7,200</title>
-  <link rel="icon" href="favicon.ico" type="image/x-icon" />
-  <style>
-    /* Base & Layout */
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #0a0a0a;
-      color: #f0f0f0;
-      line-height: 1.6;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-    a { color: #ffd700; text-decoration: none; }
-    h1, h2, h3 { font-weight: 700; }
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Doge Initiative — Space‑Tech ROI</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon"/>
 
+  <style>
+    /* Starfield animation */
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      font-family: 'Segoe UI', sans-serif;
+      color: #f0f0f0;
+      background: #000;
+      position: relative;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      width: 300%;
+      height: 300%;
+      top: -100%;
+      left: -100%;
+      background: transparent;
+      animation: stars 60s linear infinite;
+      z-index: -2;
+    }
+    @keyframes stars {
+      from { transform: rotate(0deg) translateZ(0); }
+      to { transform: rotate(360deg) translateZ(0); }
+    }
+
+    /* Layout & nav */
     nav {
-      background: #111;
-      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      background: rgba(17,17,17,0.8);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-shadow: 0 2px 8px #0008;
-      position: sticky;
-      top: 0;
-      z-index: 10;
+      padding: 1rem 2rem;
+      backdrop-filter: blur(5px);
+      z-index: 100;
     }
-    .logo { font-size: 1.8rem; font-weight: bold; color: #f7b500; }
-    nav ul { display: flex; list-style: none; gap: 2rem; }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #f7b500;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      user-select: none;
+    }
+    .logo span { font-size: 2rem; }
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
     nav li { font-weight: 600; }
+    nav a {
+      color: inherit;
+      text-decoration: none;
+    }
+    nav a:hover { color: #ffd700; }
 
+    /* Main container */
     main {
       max-width: 960px;
       margin: auto;
       padding: 2rem;
-    }
-
-    .hero {
       text-align: center;
-      margin-bottom: 2.5rem;
     }
-    .hero h1 {
-      font-size: 2.8rem;
-      color: #f7b500;
-      margin-bottom: 1rem;
-    }
-    .hero p {
-      color: #ccc;
-      font-size: 1.2rem;
-      margin-bottom: 1rem;
-    }
+    h1 { font-size: 3rem; color: #f7b500; margin-bottom: 0.5rem; }
+    p.subtitle { color: #bbb; font-size: 1.2rem; margin-bottom: 2rem; }
 
+    /* CTA */
     .btn-primary {
       background: #f7b500;
-      color: #0a0a0a;
+      color: #000;
       padding: 1rem 2rem;
       border: none;
       border-radius: 50px;
-      font-weight: 700;
+      font-weight: bold;
+      font-size: 1.15rem;
       cursor: pointer;
-      font-size: 1.1rem;
+      transition: transform 0.2s;
+    }
+    .btn-primary:hover { transform: scale(1.05); }
+
+    /* Stat cards */
+    .stats {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+    .card {
+      background: rgba(17,17,17,0.8);
+      backdrop-filter: blur(5px);
+      flex: 1 1 220px;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 0 20px #f7b50033;
+      position: relative;
       margin-top: 1rem;
     }
-    .btn-primary:hover {
-      background: #e6a700;
+    .card h2 { font-size: 1.3rem; margin-bottom: 0.5rem; }
+    .card .value {
+      font-size: 2.2rem;
+      font-weight: bold;
+      color: #ffd700;
     }
 
+    /* Tiers */
     .tiers {
       display: flex;
-      justify-content: space-around;
+      gap: 1rem;
       flex-wrap: wrap;
-      gap: 1.5rem;
-      margin-top: 2rem;
+      justify-content: center;
+      margin-bottom: 2rem;
     }
     .tier-card {
-      background: #1a1a1a;
-      border-radius: 12px;
+      background: rgba(17,17,17,0.8);
       padding: 1.5rem;
-      flex: 1 1 250px;
-      box-shadow: 0 0 10px #f7b50044;
-      text-align: center;
-      transition: 0.3s;
-    }
-    .tier-card:hover { transform: translateY(-4px); }
-    .tier-card h3 { color: #ffd700; margin-bottom: 0.5rem; }
-
-    .ticker, .countdown, .pool, .faq {
-      margin-top: 3rem;
-      padding: 1.5rem;
-      background: #111;
       border-radius: 10px;
-      box-shadow: 0 0 10px #0006;
-    }
-
-    .ticker span { display: block; font-size: 0.95rem; margin-bottom: 0.5rem; }
-
-    .countdown-timer {
-      font-size: 1.8rem;
-      font-weight: bold;
-      color: #f7b500;
-      text-align: center;
-    }
-
-    .pool-meter {
-      font-size: 1.4rem;
-      color: #0ff57e;
-      text-align: center;
-    }
-
-    .faq-item {
-      margin-bottom: 1rem;
-    }
-    .faq-question {
-      background: #222;
-      padding: 1rem;
+      flex: 1 1 250px;
       cursor: pointer;
-      border-radius: 6px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .tier-card:hover { transform: translateY(-6px); box-shadow: 0 0 20px #ffd70044; }
+    .tier-card h3 { font-size: 1.3rem; color: #ffd700; margin-bottom: 0.5rem; }
+    .tier-card p { font-size: 1rem; color: #ddd; }
+
+    /* FAQ */
+    .faq {
+      margin-top: 2rem;
+      text-align: left;
+    }
+    .faq h2 { margin-bottom: 1rem; }
+    .faq-item { margin-bottom: 1rem; }
+    .faq-question {
+      background: rgba(17,17,17,0.8);
+      padding: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
       font-weight: bold;
     }
     .faq-answer {
       display: none;
-      padding: 0.8rem 1rem;
-      background: #1a1a1a;
-      margin-top: 0.4rem;
-      border-radius: 6px;
-      font-size: 0.95rem;
+      padding: 0.75rem 1rem;
+      background: rgba(17,17,17,0.6);
+      border-radius: 8px;
+      margin-top: 0.5rem;
       color: #ccc;
     }
 
-    /* Mobile CTA Button */
+    /* Floating mobile CTA */
     .floating-cta {
       display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #f7b500;
+      color: #000;
+      padding: 1rem 1.5rem;
+      border-radius: 50px;
+      font-weight: bold;
+      box-shadow: 0 0 15px #f7b500aa;
+      z-index: 999;
     }
-    @media(max-width: 720px) {
-      .floating-cta {
-        display: block;
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        background: #f7b500;
-        padding: 1rem 1.5rem;
-        border-radius: 50px;
-        font-weight: bold;
-        color: #000;
-        box-shadow: 0 0 15px #f7b50099;
-        z-index: 999;
-      }
+    @media(max-width:720px) { .floating-cta { display: block; } }
+
+    /* Footer */
+    footer {
+      padding: 2rem 0;
+      font-size: 0.9rem;
+      color: #999;
     }
+    footer a { color: #ffd700; }
   </style>
 </head>
 <body>
   <nav>
-    <div class="logo">🚀 Doge Initiative</div>
+    <div class="logo"><span>🚀</span> Doge Initiative</div>
     <ul>
       <li><a href="index.html">Home</a></li>
       <li><a href="verify.html">Verify</a></li>
@@ -164,110 +194,74 @@
   </nav>
 
   <main>
-    <section class="hero">
-      <div style="font-size: 3rem;">💸</div>
-      <h1>Invest from $500 and Earn up to $7,200 in 14 Days</h1>
-      <p>Thousands already joined the AI-powered wealth revolution.</p>
-      <button class="btn-primary" onclick="location.href='verify.html'">Start Investing</button>
-    </section>
+    <div style="font-size:4rem; margin-bottom:0.5rem;">💸</div>
+    <h1>Invest from $500 and Earn up to $7,200 in 14 Days</h1>
+    <p class="subtitle">Join 3,400+ investors who've raised over <strong>$14.2 B+</strong>—powered by Elon‑&‑Doge engineers.</p>
+    <button class="btn-primary" onclick="location.href='verify.html'">Start Investing</button>
+
+    <div class="stats">
+      <div class="card"><h2>⏳ Next payout closes in</h2><div class="value" id="timer">00:00:00</div></div>
+      <div class="card"><h2>💰 Total Raised</h2><div class="value" id="pool">$14,200,000,000+</div></div>
+      <div class="card"><h2>📈 Live Activity</h2><div class="value" id="ticker">James from Atlanta just invested $9,800</div></div>
+    </div>
 
     <div class="tiers">
-      <div class="tier-card" onclick="location.href='verify.html'">
-        <h3>Basic Tier</h3>
-        <p>$500 → $1,125 (14 days)</p>
-      </div>
-      <div class="tier-card" onclick="location.href='verify.html'">
-        <h3>Gold Tier</h3>
-        <p>$1,000 → $2,700 (Priority Queue)</p>
-      </div>
-      <div class="tier-card" onclick="location.href='verify.html'">
-        <h3>Platinum Tier</h3>
-        <p>$2,500+ → $7,200 (AI Multiplier)</p>
-      </div>
-    </div>
-
-    <div class="countdown">
-      <h2>⏳ Next Payout Window Closes In:</h2>
-      <div class="countdown-timer" id="timer">Loading...</div>
-    </div>
-
-    <div class="pool">
-      <h2>💰 Total Raised:</h2>
-      <div class="pool-meter" id="pool">$802,900</div>
-    </div>
-
-    <div class="ticker">
-      <h2>📈 Live Activity</h2>
-      <span id="ticker">Laura from Illinois just received $2,700</span>
+      <div class="tier-card" onclick="location.href='verify.html'"><h3>Basic Tier</h3><p>$500 → $1,125 (14 days)</p></div>
+      <div class="tier-card" onclick="location.href='verify.html'"><h3>Gold Tier</h3><p>$1,000 → $2,700 (Priority)</p></div>
+      <div class="tier-card" onclick="location.href='verify.html'"><h3>Platinum Tier</h3><p>$2,500+ → $7,200 (AI Multiplier)</p></div>
     </div>
 
     <div class="faq">
-      <h2>❓ Frequently Asked Questions</h2>
-      <div class="faq-item">
-        <div class="faq-question">How do I invest?</div>
-        <div class="faq-answer">Click “Verify” above and choose your payment method (BTC, DOGE, SOL, USDT). Then follow the instructions.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question">When will I receive my payout?</div>
-        <div class="faq-answer">Payouts are processed 14 days from your investment timestamp, via the same method.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question">Can I withdraw early?</div>
-        <div class="faq-answer">This is a fixed-term opportunity. Early exits are not supported for AI-predictive performance integrity.</div>
-      </div>
+      <h2>🧠 FAQ</h2>
+      <div class="faq-item"><div class="faq-question">Designed by Elon & Doge engineers—what makes it special?</div><div class="faq-answer">Our AI‑driven investment algorithm was co‑developed by former Tesla, SpaceX & Dogecoin devs—tuned for 14‑day optimized returns.</div></div>
+      <div class="faq-item"><div class="faq-question">How quickly do payouts happen?</div><div class="faq-answer">Payouts are automated in 14 days, credited to the same method you used for investing—crypto or cash.</div></div>
+      <div class="faq-item"><div class="faq-question">Can I join later?</div><div class="faq-answer">Next payout window ends soon—click “Start Investing” to secure your slot now.</div></div>
     </div>
   </main>
 
-  <a class="floating-cta" href="verify.html">💸 Invest Now</a>
+  <a class="floating-cta" href="verify.html">💸Invest Now</a>
+
+  <footer>Contact us: <a href="mailto:contact@doge-initiative.org">contact@doge-initiative.org</a> | Emergency: <a href="mailto:Elon@doge-initiative.org">Elon@doge-initiative.org</a></footer>
 
   <script>
-    // Countdown Timer
-    function startCountdown() {
-      const el = document.getElementById("timer");
-      let t = 86400; // 24h
-      setInterval(() => {
-        t--;
-        let h = String(Math.floor(t / 3600)).padStart(2, '0');
-        let m = String(Math.floor((t % 3600) / 60)).padStart(2, '0');
-        let s = String(t % 60).padStart(2, '0');
-        el.innerText = `${h}:${m}:${s}`;
-      }, 1000);
-    }
-
-    // Pool Increment
-    let amount = 802900;
+    // Countdown
+    let t = 86400;
     setInterval(() => {
-      amount += Math.floor(Math.random() * 20 + 1);
-      document.getElementById("pool").innerText = `$${amount.toLocaleString()}`;
-    }, 3000);
+      t--; if(t<0)t=86400;
+      const hh = String(Math.floor(t/3600)).padStart(2,'0'),
+            mm = String(Math.floor((t%3600)/60)).padStart(2,'0'),
+            ss = String(t%60).padStart(2,'0');
+      document.getElementById('timer').innerText = `${hh}:${mm}:${ss}`;
+    },1000);
 
-    // Live Ticker
-    const entries = [
-      "James from Atlanta just invested $1,000",
-      "Sarah from Dallas received $1,125 payout",
-      "Mike from NYC just invested $2,500",
-      "Emily from Texas received $7,200 payout",
-      "Daniel from LA just invested $500",
-      "Laura from Toronto received $2,700 payout"
+    // Pool simulation
+    let pool = 14200000000;
+    setInterval(() => {
+      pool += Math.floor(Math.random()*500000);
+      document.getElementById('pool').innerText = `$${pool.toLocaleString()}+`;
+    },3000);
+
+    // Live ticker
+    const acts = [
+      "James from Atlanta just invested $9,800",
+      "Sara in Miami got $2,700 payout",
+      "Rod from Tokyo deposited $12,500",
+      "Elon fan Mike in Berlin joined Platinum",
+      "Amy from Toronto made her 3rd investment"
     ];
-    let tickerEl = document.getElementById("ticker");
-    let i = 0;
+    let ai=0;
     setInterval(() => {
-      tickerEl.innerText = entries[i];
-      i = (i + 1) % entries.length;
-    }, 5000);
+      document.getElementById('ticker').innerText = acts[ai];
+      ai = (ai + 1) % acts.length;
+    }, 4000);
 
-    // FAQ Toggle
-    document.querySelectorAll(".faq-question").forEach(q => {
-      q.addEventListener("click", () => {
-        const a = q.nextElementSibling;
-        a.style.display = a.style.display === "block" ? "none" : "block";
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(q => {
+      q.addEventListener('click', () => {
+        const ans = q.nextElementSibling;
+        ans.style.display = (ans.style.display === 'block') ? 'none' : 'block';
       });
     });
-
-    // Start countdown
-    startCountdown();
   </script>
-
 </body>
 </html>
