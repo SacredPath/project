@@ -1,456 +1,267 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Doge Initiative - Invest & Earn</title>
-  <style>
-    /* Reset & base */
-    * {
-      box-sizing: border-box;
-    }
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif, Arial, Helvetica, sans-serif;
-      background: linear-gradient(135deg, #0a1a2b, #07111f);
-      color: #e0e7ff;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 1rem;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-    a {
-      color: #facc15;
-      text-decoration: none;
-    }
-    a:hover,
-    a:focus {
-      text-decoration: underline;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Doge Initiative — Invest & Earn</title>
+<style>
+  /* Reset & base */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    background: #0a0a0a;
+    color: #e6e6e6;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  a:focus,
+  a:hover {
+    outline: none;
+    text-decoration: underline;
+  }
 
-    /* Container */
-    main {
-      max-width: 480px;
-      width: 100%;
-      background: #112240cc;
-      border-radius: 12px;
-      box-shadow: 0 8px 30px rgb(250 204 21 / 0.7);
-      padding: 2rem 2.5rem;
-      margin-bottom: 2rem;
-    }
+  /* Container */
+  main {
+    flex-grow: 1;
+    max-width: 960px;
+    margin: auto;
+    padding: 4rem 1.5rem 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3.5rem;
+  }
 
-    /* Hero */
-    .hero {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-      position: relative;
-      margin-bottom: 2rem;
-    }
-    .hero img {
-      filter: drop-shadow(0 0 8px #facc15);
-      width: 80px;
-      height: 80px;
-    }
+  /* Hero Section */
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    max-width: 680px;
+    text-align: center;
+  }
+  .hero svg {
+    width: 96px;
+    height: 96px;
+    filter: drop-shadow(0 0 10px #f7b500);
+  }
+  .hero h1 {
+    font-weight: 900;
+    font-size: 3.6rem;
+    letter-spacing: -0.04em;
+    margin: 0;
+    color: #f7b500;
+    user-select: none;
+  }
+  .hero p {
+    font-weight: 400;
+    font-size: 1.3rem;
+    color: #bbbbbb;
+    user-select: none;
+  }
+  .btn-invest {
+    background-color: #f7b500;
+    color: #0a0a0a;
+    border: none;
+    border-radius: 40px;
+    padding: 1.15rem 3rem;
+    font-weight: 700;
+    font-size: 1.25rem;
+    cursor: pointer;
+    box-shadow: 0 0 18px #f7b500aa;
+    transition: background-color 0.3s ease;
+    user-select: none;
+  }
+  .btn-invest:hover,
+  .btn-invest:focus {
+    background-color: #cca300;
+    outline: none;
+  }
+
+  /* Tiers Section */
+  .tiers {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .tier-card {
+    flex: 1 1 260px;
+    background: #1a1a1a;
+    border-radius: 14px;
+    padding: 2.5rem 2rem;
+    box-shadow: 0 0 20px #f7b50022;
+    text-align: center;
+    color: #f7b500;
+    font-weight: 700;
+    cursor: pointer;
+    user-select: none;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .tier-card:hover,
+  .tier-card:focus {
+    box-shadow: 0 0 30px #f7b500bb;
+    outline: none;
+    transform: translateY(-6px);
+  }
+  .tier-title {
+    font-size: 1.6rem;
+    margin-bottom: 0.75rem;
+  }
+  .tier-amount {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: #ffd54c;
+  }
+  .tier-sub {
+    font-size: 1rem;
+    color: #ddd;
+    font-weight: 400;
+  }
+
+  /* Testimonials Section */
+  .testimonial-container {
+    max-width: 620px;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.05rem;
+    color: #999;
+    user-select: none;
+    min-height: 48px;
+    text-align: center;
+    position: relative;
+  }
+  .testimonial-text {
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+  }
+  .testimonial-text.active {
+    opacity: 1;
+    position: relative;
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    color: #555;
+    font-size: 0.9rem;
+    padding: 1rem 0 2rem;
+    user-select: none;
+  }
+  footer a {
+    color: #f7b500;
+  }
+
+  /* Responsive */
+  @media (max-width: 720px) {
     .hero h1 {
-      color: #facc15;
-      text-shadow: 0 0 16px #facc15;
-      font-weight: 900;
-      font-size: 2.8rem;
-      margin: 0;
-      user-select: none;
-      text-align: center;
+      font-size: 2.5rem;
     }
-    .hero p {
-      color: #cbd5e1;
-      max-width: 420px;
-      font-size: 1.2rem;
-      margin: 0;
-      user-select: none;
-      text-align: center;
-    }
-    .btn-primary {
-      background: #facc15;
-      color: #0a1a2b;
-      border: none;
-      font-weight: 700;
-      font-size: 1.1rem;
-      padding: 0.9rem 2rem;
-      border-radius: 40px;
-      cursor: pointer;
-      box-shadow: 0 0 15px #facc15aa;
-      transition: background 0.3s ease;
-      user-select: none;
-      margin-top: 1rem;
-    }
-    .btn-primary:hover,
-    .btn-primary:focus {
-      background: #d4a60b;
-      outline: none;
-      box-shadow: 0 0 22px #d4a60bcc;
-    }
-
-    /* Investment tiers */
     .tiers {
-      background: #0f172a;
-      border-radius: 10px;
-      padding: 1.3rem 1.5rem;
-      margin-bottom: 2rem;
-      box-shadow: inset 0 0 10px #facc15aa;
+      flex-direction: column;
+      gap: 1.5rem;
     }
-    .tiers h2 {
-      color: #facc15;
-      margin-bottom: 1rem;
-      font-weight: 700;
-      font-size: 1.6rem;
-      user-select: none;
-      text-align: center;
+    .tier-card {
+      max-width: 320px;
+      margin: 0 auto;
     }
-    .tiers ul {
-      list-style: none;
-      padding-left: 0;
-      margin: 0;
-    }
-    .tiers li {
-      background: linear-gradient(90deg, #facc15 30%, transparent 70%);
-      color: #0a1a2b;
-      font-weight: 700;
-      margin: 0.5rem 0;
-      padding: 0.7rem 1rem;
-      border-radius: 6px;
-      user-select: none;
-      text-align: center;
-      box-shadow: 0 2px 8px #facc15bb;
-    }
-
-    /* Wallets - accordion style */
-    .wallets {
-      margin-bottom: 2rem;
-      user-select: none;
-    }
-    .wallets h2 {
-      color: #facc15;
-      margin-bottom: 1rem;
-      font-weight: 700;
-      font-size: 1.6rem;
-      text-align: center;
-    }
-    .accordion-item {
-      background: #112240cc;
-      margin-bottom: 0.8rem;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px #facc1500;
-      overflow: hidden;
-      transition: box-shadow 0.3s ease;
-    }
-    .accordion-item:hover {
-      box-shadow: 0 4px 20px #facc15aa;
-    }
-    .accordion-header {
-      cursor: pointer;
-      padding: 1rem 1.5rem;
-      font-weight: 700;
-      font-size: 1.15rem;
-      color: #facc15;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      user-select: none;
-    }
-    .accordion-header:focus {
-      outline: 2px solid #facc15;
-      outline-offset: 3px;
-    }
-    .accordion-content {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.35s ease;
-      background: #0f172a;
-      padding: 0 1.5rem;
-      user-select: text;
-    }
-    .accordion-content.open {
-      padding: 1rem 1.5rem;
-      max-height: 100px; /* enough for address + button */
-    }
-    .wallet-address {
-      color: #cbd5e1;
-      font-family: monospace;
-      font-size: 1rem;
-      margin-bottom: 0.6rem;
-      user-select: text;
-      word-break: break-all;
-    }
-    .copy-btn {
-      background: #facc15;
-      border: none;
-      color: #0a1a2b;
-      padding: 0.4rem 1rem;
-      font-weight: 700;
-      border-radius: 30px;
-      cursor: pointer;
-      box-shadow: 0 0 10px #facc1500;
-      transition: background 0.3s ease;
-      user-select: none;
-    }
-    .copy-btn:hover,
-    .copy-btn:focus {
-      background: #d4a60b;
-      outline: none;
-      box-shadow: 0 0 15px #d4a60bcc;
-    }
-    .copy-btn:active {
-      transform: scale(0.96);
-    }
-
-    /* Testimonials */
-    .testimonials {
-      background: #112240cc;
-      color: #cbd5e1;
-      border-radius: 10px;
-      padding: 1.5rem 2rem;
-      font-style: italic;
-      font-size: 1rem;
-      text-align: center;
-      min-height: 80px;
-      user-select: none;
-      box-shadow: 0 0 12px #facc15cc inset;
-      margin-bottom: 2rem;
-    }
-
-    /* Live activity popup */
-    .live-activity {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      background: #facc15;
-      color: #0a1a2b;
-      font-weight: 700;
-      padding: 0.8rem 1.2rem;
-      border-radius: 30px;
-      display: none;
-      align-items: center;
-      gap: 8px;
-      box-shadow: 0 0 12px #facc15bb;
-      user-select: none;
-      z-index: 9999;
-      font-size: 0.95rem;
-      cursor: default;
-      max-width: 300px;
-    }
-    .live-activity.show {
-      display: flex;
-      animation: fadeInOut 7s forwards;
-    }
-    @keyframes fadeInOut {
-      0% {opacity: 0;}
-      10% {opacity: 1;}
-      90% {opacity: 1;}
-      100% {opacity: 0;}
-    }
-    .live-activity svg {
-      fill: #0a1a2b;
-      width: 20px;
-      height: 20px;
-    }
-
-    /* Footer */
-    footer {
-      color: #94a3b8;
-      font-size: 0.9rem;
-      text-align: center;
-      user-select: none;
-      margin-bottom: 1rem;
-    }
-    footer a {
-      color: #facc15;
-    }
-
-    /* Responsive */
-    @media (max-width: 500px) {
-      main {
-        max-width: 100%;
-        padding: 1.5rem 1.7rem;
-      }
-      .hero h1 {
-        font-size: 2.2rem;
-      }
-      .btn-primary {
-        padding: 0.75rem 1.8rem;
-        font-size: 1rem;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
-  <main role="main" aria-label="Doge Initiative investment platform">
+  <main role="main" aria-label="Doge Initiative landing page">
 
-    <section class="hero" aria-label="Main hero section">
-      <img src="images/money_wings.svg" alt="Money with wings icon" />
+    <section class="hero">
+      <!-- Money with wings SVG inline for crisp rendering -->
+      <svg aria-hidden="true" focusable="false" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 1rem; filter: drop-shadow(0 0 10px #f7b500); width: 96px; height: 96px;">
+        <g filter="url(#shadow)">
+          <ellipse cx="32" cy="32" rx="28" ry="18" fill="url(#greenGrad)" />
+        </g>
+        <path d="M20 32c0-6 8-8 12-8s12 2 12 8-8 8-12 8-12-2-12-8z" fill="#3DBE29" stroke="#1A6F0A" stroke-width="2" />
+        <path d="M32 20v24" stroke="#145214" stroke-width="2" stroke-linecap="round" />
+        <path d="M27 25c2-2 10-2 12 0" stroke="#1A6F0A" stroke-width="2" stroke-linecap="round" />
+        <path d="M12 32c3-6 7-10 12-10" stroke="#145214" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M52 32c-3-6-7-10-12-10" stroke="#145214" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M10 40c4-8 10-12 22-12" stroke="#1A6F0A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M54 40c-4-8-10-12-22-12" stroke="#1A6F0A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+        <defs>
+          <filter id="shadow" x="0" y="10" width="64" height="44" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feDropShadow dx="0" dy="3" stdDeviation="2" flood-opacity="0.25" />
+          </filter>
+          <linearGradient id="greenGrad" x1="4" y1="20" x2="60" y2="44" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#7CFC00" />
+            <stop offset="1" stop-color="#0B610B" />
+          </linearGradient>
+        </defs>
+      </svg>
+
       <h1>Invest from $500 and Earn up to $7,200 in 14 Days</h1>
-      <p>Join thousands sharing the wealth of technology.</p>
-      <button class="btn-primary" onclick="location.href='verify.html'" aria-label="Start investing">Get Started</button>
+      <p>Join thousands sharing the wealth of technology</p>
+
+      <button class="btn-invest" onclick="location.href='verify.html'" aria-label="Invest now">Invest Now</button>
     </section>
 
     <section class="tiers" aria-label="Investment tiers">
-      <h2>Investment Tiers</h2>
-      <ul>
-        <li>Basic Tier: <strong>$500 → $1,125 payout (14 days)</strong></li>
-        <li>Gold Tier: <strong>$1,000 → $2,700 payout (Priority queue)</strong></li>
-        <li>Platinum Tier: <strong>$2,500+ → $7,200 payout (AI Smart Multiplier)</strong></li>
-      </ul>
+      <a href="verify.html" class="tier-card" tabindex="0" role="button" aria-pressed="false" aria-label="Basic Tier: Invest 500 dollars for 1,125 payout in 14 days">
+        <div class="tier-title">Basic Tier</div>
+        <div class="tier-amount">$500 → $1,125</div>
+        <div class="tier-sub">(14 days payout)</div>
+      </a>
+      <a href="verify.html" class="tier-card" tabindex="0" role="button" aria-pressed="false" aria-label="Gold Tier: Invest 1,000 dollars for 2,700 payout with priority queue">
+        <div class="tier-title">Gold Tier</div>
+        <div class="tier-amount">$1,000 → $2,700</div>
+        <div class="tier-sub">(Priority queue)</div>
+      </a>
+      <a href="verify.html" class="tier-card" tabindex="0" role="button" aria-pressed="false" aria-label="Platinum Tier: Invest 2,500 dollars or more for 7,200 payout with AI smart multiplier">
+        <div class="tier-title">Platinum Tier</div>
+        <div class="tier-amount">$2,500+ → $7,200</div>
+        <div class="tier-sub">(AI Smart Multiplier)</div>
+      </a>
     </section>
 
-    <section class="wallets" aria-label="Deposit wallets">
-      <h2>Deposit Wallets (Click to expand)</h2>
-
-      <div class="accordion-item">
-        <button class="accordion-header" aria-expanded="false" aria-controls="wallet-doge" id="header-doge">
-          DOGE
-          <span aria-hidden="true" style="font-weight:bold;">+</span>
-        </button>
-        <div id="wallet-doge" class="accordion-content" role="region" aria-labelledby="header-doge" hidden>
-          <div class="wallet-address" id="doge-address">D91ME9KqahFu7LLySpr3nPGYY1iheCu8WX</div>
-          <button class="copy-btn" aria-label="Copy DOGE wallet address" type="button" data-clipboard-text="D91ME9KqahFu7LLySpr3nPGYY1iheCu8WX">Copy</button>
-        </div>
-      </div>
-
-      <div class="accordion-item">
-        <button class="accordion-header" aria-expanded="false" aria-controls="wallet-btc" id="header-btc">
-          BTC
-          <span aria-hidden="true" style="font-weight:bold;">+</span>
-        </button>
-        <div id="wallet-btc" class="accordion-content" role="region" aria-labelledby="header-btc" hidden>
-          <div class="wallet-address" id="btc-address">bc1qxvjz6kv84awx29p75qhn7qgxtwq4xt3phc7q26</div>
-          <button class="copy-btn" aria-label="Copy BTC wallet address" type="button" data-clipboard-text="bc1qxvjz6kv84awx29p75qhn7qgxtwq4xt3phc7q26">Copy</button>
-        </div>
-      </div>
-
-      <div class="accordion-item">
-        <button class="accordion-header" aria-expanded="false" aria-controls="wallet-sol" id="header-sol">
-          SOL
-          <span aria-hidden="true" style="font-weight:bold;">+</span>
-        </button>
-        <div id="wallet-sol" class="accordion-content" role="region" aria-labelledby="header-sol" hidden>
-          <div class="wallet-address" id="sol-address">3F2D7izX8gYkSwXwSyWoKB1dob53MDMCxqBVpPUEc8sz</div>
-          <button class="copy-btn" aria-label="Copy SOL wallet address" type="button" data-clipboard-text="3F2D7izX8gYkSwXwSyWoKB1dob53MDMCxqBVpPUEc8sz">Copy</button>
-        </div>
-      </div>
-
-      <div class="accordion-item">
-        <button class="accordion-header" aria-expanded="false" aria-controls="wallet-usdt" id="header-usdt">
-          USDT (ERC-20)
-          <span aria-hidden="true" style="font-weight:bold;">+</span>
-        </button>
-        <div id="wallet-usdt" class="accordion-content" role="region" aria-labelledby="header-usdt" hidden>
-          <div class="wallet-address" id="usdt-address">0x1a670b57855dE6cED8Cf659Eea8BDDcB0F4C5FE4</div>
-          <button class="copy-btn" aria-label="Copy USDT (ERC-20) wallet address" type="button" data-clipboard-text="0x1a670b57855dE6cED8Cf659Eea8BDDcB0F4C5FE4">Copy</button>
-        </div>
-      </div>
+    <section class="testimonial-container" aria-live="polite" aria-atomic="true" role="region" aria-label="User testimonials">
+      <p class="testimonial-text active">"I invested $1,000 last week and already seeing great returns!" — Sarah T., New York</p>
+      <p class="testimonial-text">"This is the easiest investment I’ve ever made. $2,500 to $7,200 in two weeks!" — Mike D., California</p>
+      <p class="testimonial-text">"Thanks to Doge Initiative, I withdrew my first $1,125 payout this week!" — Emily R., Texas</p>
+      <p class="testimonial-text">"Best investment platform ever, highly recommend it!" — John S., Florida</p>
+      <p class="testimonial-text">"I joined at the basic tier and doubled my money faster than I imagined." — Laura M., Illinois</p>
     </section>
 
-    <section class="testimonials" aria-live="polite" aria-atomic="true" role="region" aria-label="User testimonials">
-      "I invested $1,000 last week and already seeing great returns!" — Sarah T., New York
-    </section>
   </main>
-
-  <div class="live-activity" aria-live="assertive" role="alert" aria-atomic="true" tabindex="-1" aria-label="Recent live investment activity" >
-    <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false" width="20" height="20" fill="#0a1a2b">
-      <path d="M10 0C4.5 0 0 4.5 0 10s4.5 10 10 10 10-4.5 10-10S15.5 0 10 0zm0 18.2A8.2 8.2 0 1 1 18.2 10 8.21 8.21 0 0 1 10 18.2z"/>
-      <path d="M13.7 7.7a.7.7 0 0 0-1 0l-3 3-1-1a.7.7 0 1 0-1 1l1.5 1.5a.7.7 0 0 0 1 0l3.5-3.5a.7.7 0 0 0 0-1z"/>
-    </svg>
-    <span id="liveText">John from Texas just invested $1,000 in DOGE!</span>
-  </div>
 
   <footer>
     Contact us: <a href="mailto:contact@doge-initiative.org">contact@doge-initiative.org</a> | Emergency: <a href="mailto:Elon@doge-initiative.org">Elon@doge-initiative.org</a>
   </footer>
 
-  <script>
-    // Accordion toggle for wallets
-    const accordions = document.querySelectorAll('.accordion-header');
-    accordions.forEach(header => {
-      header.addEventListener('click', () => {
-        const expanded = header.getAttribute('aria-expanded') === 'true';
-        // Close all accordions
-        accordions.forEach(h => {
-          h.setAttribute('aria-expanded', 'false');
-          h.querySelector('span').textContent = '+';
-          document.getElementById(h.getAttribute('aria-controls')).hidden = true;
-          document.getElementById(h.getAttribute('aria-controls')).classList.remove('open');
-        });
-        if (!expanded) {
-          header.setAttribute('aria-expanded', 'true');
-          header.querySelector('span').textContent = '−';
-          const content = document.getElementById(header.getAttribute('aria-controls'));
-          content.hidden = false;
-          content.classList.add('open');
-        }
-      });
-    });
+<script>
+  // Testimonials rotation
+  const testimonials = document.querySelectorAll('.testimonial-text');
+  let activeIndex = 0;
+  setInterval(() => {
+    testimonials[activeIndex].classList.remove('active');
+    activeIndex = (activeIndex + 1) % testimonials.length;
+    testimonials[activeIndex].classList.add('active');
+  }, 6000);
+</script>
 
-    // Clipboard copy buttons
-    const copyButtons = document.querySelectorAll('.copy-btn');
-    copyButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const address = btn.getAttribute('data-clipboard-text');
-        navigator.clipboard.writeText(address).then(() => {
-          btn.textContent = "Copied!";
-          setTimeout(() => btn.textContent = "Copy", 1500);
-        }).catch(() => {
-          btn.textContent = "Error";
-          setTimeout(() => btn.textContent = "Copy", 1500);
-        });
-      });
-    });
-
-    // Testimonials cycling
-    const testimonials = [
-      '"I invested $1,000 last week and already seeing great returns!" — Sarah T., New York',
-      '"This is the easiest investment I’ve ever made. $2,500 to $7,200 in two weeks!" — Mike D., California',
-      '"Thanks to Doge Initiative, I withdrew my first $1,125 payout this week!" — Emily R., Texas',
-      '"Best investment platform ever, highly recommend it!" — John S., Florida',
-      '"I joined at the basic tier and doubled my money faster than I imagined." — Laura M., Illinois',
-      '"I put in $500, and it doubled in just 14 days. Amazing!" — Carlos P., Miami',
-      '"Great customer support and steady payouts. Loving it!" — Aisha K., Chicago',
-      '"Invested $1,200 and seeing solid growth daily!" — Liam W., New Jersey',
-      '"Quick withdrawals and easy process. Highly recommend!" — Nina L., Seattle',
-      '"My Platinum Tier investment paid off faster than I expected!" — Tom H., Atlanta'
-    ];
-    const testimonialEl = document.querySelector('.testimonials');
-    let testimonialIndex = 0;
-    setInterval(() => {
-      testimonialIndex = (testimonialIndex + 1) % testimonials.length;
-      testimonialEl.textContent = testimonials[testimonialIndex];
-    }, 5000);
-
-    // Live activity popup cycling
-    const liveActivities = [
-      "John from Texas just invested $1,000 in DOGE!",
-      "Emily from California just deposited $2,500!",
-      "Carlos from Florida invested $500 in the Basic Tier!",
-      "Laura from New York just upgraded to Platinum Tier!",
-      "Mike from Illinois received $7,200 payout today!"
-    ];
-    const liveTextEl = document.getElementById('liveText');
-    let liveIndex = 0;
-    function showLiveActivity() {
-      liveTextEl.textContent = liveActivities[liveIndex];
-      const popup = document.querySelector('.live-activity');
-      popup.classList.add('show');
-      setTimeout(() => {
-        popup.classList.remove('show');
-        liveIndex = (liveIndex + 1) % liveActivities.length;
-      }, 7000);
-    }
-    setInterval(showLiveActivity, 9000);
-    // Show first immediately
-    showLiveActivity();
-
-  </script>
 </body>
 </html>
