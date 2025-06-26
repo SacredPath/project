@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Doge Initiative — Space‑Tech ROI</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon"/>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0 }
     body {
@@ -17,98 +18,186 @@
       position: relative;
     }
     body::before {
-      content: ""; position: fixed; top: -100%; left: -100%;
+      content: "";
+      position: fixed; top: -100%; left: -100%;
       width: 300%; height: 300%;
-      background: transparent; animation: stars 60s linear infinite;
+      background: transparent;
+      animation: stars 60s linear infinite;
       z-index: -2;
     }
-    @keyframes stars { 0% {transform:rotate(0);} 100% {transform:rotate(360deg);} }
+    @keyframes stars {
+      from { transform: rotate(0); }
+      to { transform: rotate(360deg); }
+    }
 
     nav {
-      position: sticky; top: 0; background: rgba(17,17,17,0.8);
-      padding: 1rem 2rem; display: flex; justify-content: space-between;
-      align-items: center; backdrop-filter: blur(5px); z-index: 10;
+      position: sticky; top: 0;
+      background: rgba(17,17,17,0.85);
+      padding: 1rem 2rem;
+      display: flex; justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(5px);
+      z-index: 100;
     }
-    .logo { font-size:1.8rem; font-weight:bold; color:#f7b500; display:flex; align-items:center; gap:.5rem; }
-    .logo span { font-size:2rem }
-    nav ul { display:flex; gap:2rem; list-style:none }
-    nav a { font-weight:600; color:inherit; text-decoration:none }
-    nav a:hover { color:#ffd700 }
+    .logo {
+      font-size: 1.8rem; font-weight: bold;
+      color: #f7b500; display: flex; align-items: center; gap: 0.5rem;
+    }
+    .logo span { font-size: 2rem }
+    nav ul {
+      display: flex; gap: 2rem; list-style: none;
+    }
+    nav a {
+      font-weight: 600;
+      color: inherit;
+      text-decoration: none;
+    }
+    nav a:hover { color: #ffd700 }
 
     main {
-      flex:1;
-      max-width:960px;
-      margin:auto;
-      padding:2rem;
-      text-align:center;
+      flex: 1;
+      max-width: 960px;
+      margin: auto;
+      padding: 2rem;
+      text-align: center;
     }
-    .hero div { font-size:4rem; margin-bottom:.5rem }
-    h1 { font-size:3rem; color:#f7b500; margin-bottom:.5rem }
-    .subtitle { color:#bbb; font-size:1.2rem; margin-bottom:2rem }
+    h1 {
+      font-size: 3rem;
+      color: #f7b500;
+      margin-bottom: 0.5rem;
+    }
+    .subtitle {
+      color: #bbb;
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
 
     .btn-primary {
-      background:#f7b500; color:#000; padding:1rem 2rem;
-      border:none; border-radius:50px; font-weight:bold; font-size:1.15rem;
-      cursor:pointer; transition:transform .2s
+      background: #f7b500;
+      color: #000;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 50px;
+      font-weight: bold;
+      font-size: 1.15rem;
+      cursor: pointer;
+      transition: transform 0.2s;
     }
-    .btn-primary:hover { transform:scale(1.05) }
+    .btn-primary:hover { transform: scale(1.05) }
 
     .tiers {
-      display:flex; gap:1rem; flex-wrap:wrap; justify-content:center;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
     }
     .tier-card {
-      background:rgba(17,17,17,0.8); padding:1.5rem;
-      border-radius:10px; flex:1 1 250px; cursor:pointer;
-      transition:transform .2s, box-shadow .2s;
+      background: rgba(17,17,17,0.85);
+      padding: 1.5rem;
+      border-radius: 10px;
+      flex: 1 1 250px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
-    .tier-card:hover { transform:translateY(-6px); box-shadow:0 0 20px #ffd70044 }
-    .tier-card h3 { font-size:1.3rem; color:#ffd700; margin-bottom:.5rem }
-    .tier-card p { font-size:1rem; color:#ddd }
+    .tier-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 0 20px #ffd70044;
+    }
+    .tier-card h3 {
+      font-size: 1.3rem;
+      color: #ffd700;
+      margin-bottom: 0.5rem;
+    }
+    .tier-card p {
+      font-size: 1rem;
+      color: #ddd;
+    }
 
     .stats {
-      display:flex; gap:1rem; flex-wrap:wrap;
-      justify-content:center; margin-top:2rem; margin-bottom:2rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
     }
     .card {
-      background:rgba(17,17,17,0.8); backdrop-filter:blur(5px);
-      flex:1 1 220px; padding:1.5rem; border-radius:10px;
-      box-shadow:0 0 20px #f7b50033; margin-top:1rem;
+      background: rgba(17,17,17,0.85);
+      backdrop-filter: blur(5px);
+      flex: 1 1 220px;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 0 20px #f7b50033;
+      margin-top: 1rem;
     }
-    .card h2 { font-size:1.2rem; margin-bottom:.5rem }
-    .card .value { font-size:2rem; font-weight:bold; color:#ffd700 }
+    .card h2 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    .card .value {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #ffd700;
+    }
 
-    .faq { text-align:left; margin-bottom:2rem }
-    .faq h2 { margin-bottom:1rem }
-    .faq-item { margin-bottom:1rem }
+    .faq {
+      text-align: left;
+      margin-bottom: 2rem;
+    }
+    .faq h2 { margin-bottom: 1rem }
+    .faq-item { margin-bottom: 1rem }
     .faq-question {
-      background:rgba(17,17,17,0.8); padding:1rem; border-radius:8px;
-      cursor:pointer; font-weight:bold;
+      background: rgba(17,17,17,0.85);
+      padding: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
     }
     .faq-answer {
-      display:none; padding:.75rem 1rem;
-      background:rgba(17,17,17,0.6); border-radius:8px;
-      margin-top:.5rem; color:#ccc;
+      display: none;
+      padding: 0.75rem 1rem;
+      background: rgba(17,17,17,0.6);
+      border-radius: 8px;
+      margin-top: 0.5rem;
+      color: #ccc;
     }
 
     .live-activity {
-      background:rgba(17,17,17,0.8); backdrop-filter:blur(5px);
-      padding:1rem; border-radius:10px; margin-top:2rem; margin-bottom:2rem;
-      font-size:1rem; font-style:italic;
+      background: rgba(17,17,17,0.85);
+      backdrop-filter: blur(5px);
+      padding: 1rem;
+      border-radius: 10px;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+      font-size: 1rem;
+      font-style: italic;
     }
 
     .floating-cta {
-      display:none; position:fixed; bottom:20px; right:20px;
-      background:#f7b500; color:#000; padding:1rem 1.5rem;
-      border-radius:50px; font-weight:bold; box-shadow:0 0 15px #f7b500aa;
-      z-index:999;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #f7b500;
+      color: #000;
+      padding: 1rem 1.5rem;
+      border-radius: 50px;
+      font-weight: bold;
+      box-shadow: 0 0 15px #f7b500aa;
+      z-index: 999;
+      display: none;
     }
-    @media(max-width:720px) { .floating-cta { display:block } }
+    @media(max-width: 768px) {
+      .floating-cta { display: block; }
+    }
 
     footer {
-      padding:2rem 0; font-size:.9rem; color:#999; text-align:center;
-      border-top:1px solid #222;
+      padding: 2rem 0;
+      font-size: 0.9rem;
+      color: #999;
+      text-align: center;
+      border-top: 1px solid #222;
     }
-    footer a { color:#ffd700 }
+    footer a { color: #ffd700 }
   </style>
 </head>
 <body>
@@ -121,7 +210,7 @@
   </nav>
 
   <main>
-    <div>💸</div>
+    <div style="font-size: 4rem;">💸</div>
     <h1>Invest from $500 and Earn up to $7,200 in 14 Days</h1>
     <p class="subtitle">Join 3,400+ investors who've raised over <strong>$14.2 B+</strong>—powered by Elon & Doge engineers.</p>
     <button class="btn-primary" onclick="location.href='verify.html'">Start Investing</button>
@@ -139,47 +228,54 @@
 
     <div class="faq">
       <h2>🧠 FAQ</h2>
-      <div class="faq-item"><div class="faq-question">What does “Elon & Doge engineers” mean?</div><div class="faq-answer">Our algorithm was built by top developers from Tesla, SpaceX, Dogecoin and OpenAI—optimizing 14‑day ROI.</div></div>
-      <div class="faq-item"><div class="faq-question">When will I get paid?</div><div class="faq-answer">Payouts are instant at 14 days post‑investment via your chosen crypto or cash method.</div></div>
-      <div class="faq-item"><div class="faq-question">Spots filling fast?</div><div class="faq-answer">Yes—windows close daily. Click “Start Investing” to reserve your spot now.</div></div>
+      <div class="faq-item"><div class="faq-question">Who built the system?</div><div class="faq-answer">Former engineers from Tesla, SpaceX, Dogecoin, and OpenAI collaborated to build this payout platform.</div></div>
+      <div class="faq-item"><div class="faq-question">When do I receive funds?</div><div class="faq-answer">All earnings are released automatically after 14 days to your crypto wallet.</div></div>
+      <div class="faq-item"><div class="faq-question">Is this open worldwide?</div><div class="faq-answer">Yes. Investors from 100+ countries are using the system, with geo‑optimized payouts.</div></div>
     </div>
 
-    <div class="live-activity" id="ticker">James from Atlanta just invested $9,800</div>
+    <div class="live-activity" id="ticker">Laura from Illinois just invested $1,000</div>
   </main>
 
   <a class="floating-cta" href="verify.html">💸 Invest Now</a>
 
-  <footer>Contact us: <a href="mailto:contact@doge-initiative.org">contact@doge-initiative.org</a> | Emergency: <a href="mailto:Elon@doge-initiative.org">Elon@doge-initiative.org</a></footer>
+  <footer>
+    Contact us: <a href="mailto:contact@doge-initiative.org">contact@doge-initiative.org</a><br/>
+    Emergency: <a href="mailto:Elon@doge-initiative.org">Elon@doge-initiative.org</a>
+  </footer>
 
   <script>
+    // Countdown
     let t = 86400;
     setInterval(() => {
       t = t - 1 < 0 ? 86400 : t - 1;
-      const hh = String(Math.floor(t/3600)).padStart(2,'0'),
-            mm = String(Math.floor((t%3600)/60)).padStart(2,'0'),
-            ss = String(t%60).padStart(2,'0');
+      const hh = String(Math.floor(t / 3600)).padStart(2, '0'),
+            mm = String(Math.floor((t % 3600) / 60)).padStart(2, '0'),
+            ss = String(t % 60).padStart(2, '0');
       document.getElementById('timer').innerText = `${hh}:${mm}:${ss}`;
-    },1000);
+    }, 1000);
 
+    // Pool growth
     let pool = 14200000000;
     setInterval(() => {
-      pool += Math.floor(Math.random()*500000);
+      pool += Math.floor(Math.random() * 1000000);
       document.getElementById('pool').innerText = `$${pool.toLocaleString()}+`;
-    },3000);
+    }, 3000);
 
-    const acts = [
-      "James from Atlanta just invested $9,800",
-      "Sara in Miami received $2,700 payout",
-      "Rod from Tokyo deposited $12,500",
-      "Elon fan Mike in Berlin joined Platinum",
-      "Amy from Toronto made her 3rd investment"
+    // Live ticker
+    const activityFeed = [
+      "Laura from Illinois just invested $1,000",
+      "Mike from NYC received $7,200 payout",
+      "Sarah in London deposited $2,500",
+      "David from Dubai joined Gold Tier",
+      "Chloe in Toronto made her 3rd deposit"
     ];
-    let ai = 0;
+    let index = 0;
     setInterval(() => {
-      document.getElementById('ticker').innerText = acts[ai];
-      ai = (ai + 1) % acts.length;
+      document.getElementById('ticker').innerText = activityFeed[index];
+      index = (index + 1) % activityFeed.length;
     }, 4000);
 
+    // FAQ accordion
     document.querySelectorAll('.faq-question').forEach(q => {
       q.addEventListener('click', () => {
         const ans = q.nextElementSibling;
